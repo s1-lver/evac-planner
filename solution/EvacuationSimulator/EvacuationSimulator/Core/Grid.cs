@@ -66,7 +66,7 @@ public class Grid
         if (!InBounds(x, y))
             return false;
 
-        return cells[x, y] != CellType.Wall;
+        return cells[x, y] != CellType.Wall && cells[x, y] != CellType.Hazard;
     }
 
     public bool IsWalkable(Point point)
@@ -130,6 +130,14 @@ public class Grid
             throw new ArgumentOutOfRangeException(nameof(newHeight), "Height must be greater than zero");
 
         CellType[,] newCells = new CellType[newWidth, newHeight];
+        
+        for (int y = 0; y < newHeight; y++)
+        {
+            for (int x = 0; x < newWidth; x++)
+            {
+                newCells[x, y] = CellType.Empty;
+            }
+        }
         
         int copyWidth = Math.Min(Width, newWidth);
         int copyHeight = Math.Min(Height, newHeight);

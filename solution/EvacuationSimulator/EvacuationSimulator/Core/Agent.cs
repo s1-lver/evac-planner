@@ -25,7 +25,8 @@ public class Agent
 
     public void SetPath(List<Point> path)
     {
-        PlannedPath = path ?? throw new ArgumentNullException(nameof(path));
+        PlannedPath = new List<Point>(path);
+        
         while (PlannedPath.Count > 0 && PlannedPath[0] == Position)
             PlannedPath.RemoveAt(0);
     }
@@ -43,7 +44,7 @@ public class Agent
     public void MoveTo(Point nextCell)
     {
         if (HasEvacuated)
-            throw new WarningException("Evacuated agents cannot move.");
+            throw new InvalidOperationException("Evacuated agents cannot move.");
 
         Position = nextCell;
         

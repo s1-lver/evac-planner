@@ -84,6 +84,63 @@ public static class CoreTests
         
     }
 
+    public static class SimulationTests
+    {
+        private const string GridString = """
+                                          WWWWWWWWWWWWWWWWW
+                                          WS****HHHH****E*W
+                                          W****W****W*****W
+                                          W****W****W*****W
+                                          W****W****W*****W
+                                          W***************W
+                                          W***************W
+                                          WWWWWWWWWWWWWWWWW
+                                          """;
+
+        private const string GridWithNoReachableExit = """
+                                                       WWWWWWWW
+                                                       W******W
+                                                       W**W***W
+                                                       WS*WWWWW
+                                                       W**W**EW
+                                                       WWWWWWWW
+                                                       """;
+        public static void TestSimulation()
+        {
+            Grid grid = HelperMethods.CreateGridFromString(GridString);
+            List<Hazard> hazards = HelperMethods.CreateDefaultHazards(grid);
+
+            Simulation sim = new Simulation(grid, hazards, RoutingAlgorithm.Dijkstra, 1);
+            sim.InitialiseScenario();
+            while (!sim.CheckEndCondition())
+            {
+                Console.WriteLine($"Tick: {sim.CurrentTick}");
+                HelperMethods.DisplayGridWithAgents(grid, sim.Agents);
+                Console.WriteLine();
+                
+                sim.RunTick();
+            }
+            Console.WriteLine($"Tick: {sim.CurrentTick}");
+            HelperMethods.DisplayGridWithAgents(grid, sim.Agents);
+            Console.WriteLine();
+            
+            Console.WriteLine($"""
+                               [Simulation Metrics]
+                               
+                               Total Evacuation Time: {sim.Metrics.TotalEvacuationTime}
+                               Agents Evacuated: {sim.Metrics.AgentsEvacuated}
+                               Completion %: {sim.Metrics.CompletionPercentage:P1}
+                               Average Agent Waiting Time: {sim.Metrics.AverageWaitingTime}
+                               Average Risk Exposure: {sim.Metrics.AverageRiskExposure}
+                               
+                               [Algorithm Metrics]
+                               Algorithm: {sim.SelectedAlgorithm}
+                               Nodes Explored: {sim.Metrics.NodesExplored}
+                               Runtime: {sim.Metrics.AlgorithmRuntime}
+                               """);
+        }
+    }
+    
     private static class HelperMethods
     {
         public static Grid CreateGridFromString(string gridString)
@@ -158,6 +215,60 @@ public static class CoreTests
                 }
                 Console.WriteLine();
             }
+        }
+
+        public static void DisplayGridWithAgents(Grid grid, List<Agent> agents)
+        {
+            for (int y = 0; y < grid.Height; y++)
+            {
+                for (int x = 0; x < grid.Width; x++)
+                {
+                    char type;
+                    switch (grid.GetCell(x, y))
+                    {
+                        case CellType.Wall:
+                            type = 'W';
+                            break;
+                        case CellType.Exit:
+                            type = 'E';
+                            break;
+                        case CellType.Hazard:
+                            type = 'H';
+                            break;
+                        case CellType.Spawn:
+                            type = 'S';
+                            break;
+                        default:
+                            type = '*';
+                            break;
+                    }
+
+                    if (agents.Any(agent => agent.Position == new Point(x, y)))
+                        type = '@';
+                    
+                    Console.Write($"{type} ");
+                        
+                }
+                Console.WriteLine();
+            } 
+        }
+
+        public static List<Hazard> CreateDefaultHazards(Grid grid)
+        {
+            List<Hazard> hazards = new List<Hazard>();
+            int id = 1;
+            for (int y = 0; y < grid.Height; y++)
+            {
+                for (int x = 0; x < grid.Width; x++)
+                {
+                    if (grid.GetCell(x, y) == CellType.Hazard)
+                    {
+                        hazards.Add(new Hazard(id, new Point(x, y), 10, .75));
+                    }
+                }
+            }
+
+            return hazards;
         }
     }
 }

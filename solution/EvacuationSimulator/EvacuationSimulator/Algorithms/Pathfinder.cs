@@ -265,7 +265,7 @@ public static class Pathfinder
     {
         double baseCost = GetMoveCost(current, neighbour);
         double riskPenalty = riskWeight * GetCellRisk(neighbour, hazards);
-
+        
         return baseCost + riskPenalty;
     }
 
