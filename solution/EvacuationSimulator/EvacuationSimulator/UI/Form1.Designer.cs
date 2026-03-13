@@ -160,6 +160,7 @@ partial class Form1
         lblTools.Name = "lblTools";
         lblTools.Size = new System.Drawing.Size(189, 23);
         lblTools.TabIndex = 7;
+        lblTools.Text = "Tools";
         lblTools.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
         // 
         // lblHazardModifier
