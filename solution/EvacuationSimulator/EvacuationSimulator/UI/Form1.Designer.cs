@@ -74,13 +74,26 @@ partial class Form1
         lblRiskWeight = new System.Windows.Forms.Label();
         nudRiskWeight = new System.Windows.Forms.NumericUpDown();
         pnlGridHost = new System.Windows.Forms.Panel();
-        pnlGrid = new EvacuationSimulator.UI.DoubleBufferedPanel();
         pnlLegend = new System.Windows.Forms.Panel();
+        pnlLegendBody = new System.Windows.Forms.Panel();
+        flpLegendItems = new System.Windows.Forms.FlowLayoutPanel();
+        pnlLegendHeader = new System.Windows.Forms.Panel();
+        btnToggleLegend = new System.Windows.Forms.Button();
+        lblLegendLabel = new System.Windows.Forms.Label();
+        pnlGrid = new EvacuationSimulator.UI.DoubleBufferedPanel();
+        rbPan = new System.Windows.Forms.RadioButton();
+        gbVisualMode = new System.Windows.Forms.GroupBox();
+        gbTools = new System.Windows.Forms.GroupBox();
         ((System.ComponentModel.ISupportInitialize)nudSeverity).BeginInit();
         ((System.ComponentModel.ISupportInitialize)nudDecayRate).BeginInit();
         ((System.ComponentModel.ISupportInitialize)tbSpeed).BeginInit();
         ((System.ComponentModel.ISupportInitialize)nudRiskWeight).BeginInit();
         pnlGridHost.SuspendLayout();
+        pnlLegend.SuspendLayout();
+        pnlLegendBody.SuspendLayout();
+        pnlLegendHeader.SuspendLayout();
+        gbVisualMode.SuspendLayout();
+        gbTools.SuspendLayout();
         SuspendLayout();
         // 
         // lblScenarioEditor
@@ -95,7 +108,7 @@ partial class Form1
         // 
         // rbWall
         // 
-        rbWall.Location = new System.Drawing.Point(353, 65);
+        rbWall.Location = new System.Drawing.Point(2, 21);
         rbWall.Name = "rbWall";
         rbWall.Size = new System.Drawing.Size(49, 26);
         rbWall.TabIndex = 2;
@@ -107,7 +120,7 @@ partial class Form1
         // 
         // rbExit
         // 
-        rbExit.Location = new System.Drawing.Point(408, 65);
+        rbExit.Location = new System.Drawing.Point(57, 21);
         rbExit.Name = "rbExit";
         rbExit.Size = new System.Drawing.Size(49, 26);
         rbExit.TabIndex = 3;
@@ -119,7 +132,7 @@ partial class Form1
         // 
         // rbHazard
         // 
-        rbHazard.Location = new System.Drawing.Point(463, 65);
+        rbHazard.Location = new System.Drawing.Point(112, 21);
         rbHazard.Name = "rbHazard";
         rbHazard.Size = new System.Drawing.Size(64, 26);
         rbHazard.TabIndex = 4;
@@ -131,7 +144,7 @@ partial class Form1
         // 
         // rbSpawn
         // 
-        rbSpawn.Location = new System.Drawing.Point(533, 65);
+        rbSpawn.Location = new System.Drawing.Point(182, 21);
         rbSpawn.Name = "rbSpawn";
         rbSpawn.Size = new System.Drawing.Size(64, 26);
         rbSpawn.TabIndex = 5;
@@ -143,7 +156,7 @@ partial class Form1
         // 
         // rbEraser
         // 
-        rbEraser.Location = new System.Drawing.Point(624, 65);
+        rbEraser.Location = new System.Drawing.Point(272, 11);
         rbEraser.Name = "rbEraser";
         rbEraser.Size = new System.Drawing.Size(60, 26);
         rbEraser.TabIndex = 6;
@@ -241,7 +254,7 @@ partial class Form1
         // 
         // rbStepMode
         // 
-        rbStepMode.Location = new System.Drawing.Point(341, 285);
+        rbStepMode.Location = new System.Drawing.Point(0, 11);
         rbStepMode.Name = "rbStepMode";
         rbStepMode.Size = new System.Drawing.Size(85, 26);
         rbStepMode.TabIndex = 16;
@@ -252,7 +265,7 @@ partial class Form1
         // 
         // rbInstantMode
         // 
-        rbInstantMode.Location = new System.Drawing.Point(341, 315);
+        rbInstantMode.Location = new System.Drawing.Point(0, 41);
         rbInstantMode.Name = "rbInstantMode";
         rbInstantMode.Size = new System.Drawing.Size(96, 26);
         rbInstantMode.TabIndex = 17;
@@ -497,29 +510,135 @@ partial class Form1
         // 
         // pnlGridHost
         // 
-        pnlGridHost.Controls.Add(pnlGrid);
         pnlGridHost.Controls.Add(pnlLegend);
+        pnlGridHost.Controls.Add(pnlGrid);
         pnlGridHost.Location = new System.Drawing.Point(4, 7);
         pnlGridHost.Name = "pnlGridHost";
         pnlGridHost.Size = new System.Drawing.Size(331, 331);
         pnlGridHost.TabIndex = 43;
-        // 
-        // pnlGrid
-        // 
-        pnlGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-        pnlGrid.Location = new System.Drawing.Point(0, 0);
-        pnlGrid.Name = "pnlGrid";
-        pnlGrid.Size = new System.Drawing.Size(331, 331);
-        pnlGrid.TabIndex = 1;
-        pnlGrid.Paint += pnlGrid_Paint;
-        pnlGrid.MouseDown += pnlGrid_MouseDown;
+        pnlGridHost.Resize += pnlGridHost_Resize;
         // 
         // pnlLegend
         // 
-        pnlLegend.Location = new System.Drawing.Point(4, 260);
+        pnlLegend.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+        pnlLegend.BackColor = System.Drawing.Color.WhiteSmoke;
+        pnlLegend.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+        pnlLegend.Controls.Add(pnlLegendBody);
+        pnlLegend.Controls.Add(pnlLegendHeader);
+        pnlLegend.Location = new System.Drawing.Point(0, 236);
         pnlLegend.Name = "pnlLegend";
-        pnlLegend.Size = new System.Drawing.Size(331, 78);
-        pnlLegend.TabIndex = 44;
+        pnlLegend.Padding = new System.Windows.Forms.Padding(4);
+        pnlLegend.Size = new System.Drawing.Size(331, 95);
+        pnlLegend.TabIndex = 1;
+        // 
+        // pnlLegendBody
+        // 
+        pnlLegendBody.Controls.Add(flpLegendItems);
+        pnlLegendBody.Dock = System.Windows.Forms.DockStyle.Fill;
+        pnlLegendBody.Location = new System.Drawing.Point(4, 4);
+        pnlLegendBody.Name = "pnlLegendBody";
+        pnlLegendBody.Size = new System.Drawing.Size(321, 85);
+        pnlLegendBody.TabIndex = 44;
+        // 
+        // flpLegendItems
+        // 
+        flpLegendItems.AutoScroll = true;
+        flpLegendItems.Dock = System.Windows.Forms.DockStyle.Fill;
+        flpLegendItems.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+        flpLegendItems.Location = new System.Drawing.Point(0, 0);
+        flpLegendItems.Name = "flpLegendItems";
+        flpLegendItems.Size = new System.Drawing.Size(321, 85);
+        flpLegendItems.TabIndex = 44;
+        flpLegendItems.WrapContents = false;
+        // 
+        // pnlLegendHeader
+        // 
+        pnlLegendHeader.BackColor = System.Drawing.Color.Gainsboro;
+        pnlLegendHeader.Controls.Add(btnToggleLegend);
+        pnlLegendHeader.Controls.Add(lblLegendLabel);
+        pnlLegendHeader.Location = new System.Drawing.Point(0, 0);
+        pnlLegendHeader.Name = "pnlLegendHeader";
+        pnlLegendHeader.Size = new System.Drawing.Size(331, 28);
+        pnlLegendHeader.TabIndex = 44;
+        // 
+        // btnToggleLegend
+        // 
+        btnToggleLegend.Dock = System.Windows.Forms.DockStyle.Right;
+        btnToggleLegend.FlatAppearance.BorderSize = 0;
+        btnToggleLegend.FlatStyle = System.Windows.Forms.FlatStyle.System;
+        btnToggleLegend.Location = new System.Drawing.Point(301, 0);
+        btnToggleLegend.Name = "btnToggleLegend";
+        btnToggleLegend.Size = new System.Drawing.Size(30, 28);
+        btnToggleLegend.TabIndex = 44;
+        btnToggleLegend.Text = "▼";
+        btnToggleLegend.UseVisualStyleBackColor = true;
+        btnToggleLegend.Click += btnToggleLegend_Click;
+        // 
+        // lblLegendLabel
+        // 
+        lblLegendLabel.AutoSize = true;
+        lblLegendLabel.Dock = System.Windows.Forms.DockStyle.Left;
+        lblLegendLabel.Font = new System.Drawing.Font("Segoe UI", 12F);
+        lblLegendLabel.Location = new System.Drawing.Point(0, 0);
+        lblLegendLabel.Name = "lblLegendLabel";
+        lblLegendLabel.Size = new System.Drawing.Size(61, 21);
+        lblLegendLabel.TabIndex = 44;
+        lblLegendLabel.Text = "Legend";
+        lblLegendLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+        // 
+        // pnlGrid
+        // 
+        pnlGrid.Location = new System.Drawing.Point(0, 0);
+        pnlGrid.Name = "pnlGrid";
+        pnlGrid.Size = new System.Drawing.Size(331, 331);
+        pnlGrid.TabIndex = 2;
+        pnlGrid.TabStop = true;
+        pnlGrid.Paint += pnlGrid_Paint;
+        pnlGrid.MouseDown += pnlGrid_MouseDown;
+        pnlGrid.MouseEnter += pnlGrid_MouseEnter;
+        pnlGrid.MouseLeave += pnlGrid_MouseLeave;
+        pnlGrid.MouseMove += pnlGrid_MouseMove;
+        pnlGrid.MouseUp += pnlGrid_MouseUp;
+        pnlGrid.MouseWheel += pnlGrid_MouseWheel;
+        // 
+        // rbPan
+        // 
+        rbPan.Location = new System.Drawing.Point(272, 34);
+        rbPan.Name = "rbPan";
+        rbPan.Size = new System.Drawing.Size(71, 26);
+        rbPan.TabIndex = 44;
+        rbPan.TabStop = true;
+        rbPan.Text = "Pan Grid";
+        rbPan.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+        rbPan.UseVisualStyleBackColor = true;
+        // 
+        // gbVisualMode
+        // 
+        gbVisualMode.BackColor = System.Drawing.Color.Transparent;
+        gbVisualMode.Controls.Add(rbStepMode);
+        gbVisualMode.Controls.Add(rbInstantMode);
+        gbVisualMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+        gbVisualMode.Location = new System.Drawing.Point(342, 278);
+        gbVisualMode.Name = "gbVisualMode";
+        gbVisualMode.Size = new System.Drawing.Size(101, 71);
+        gbVisualMode.TabIndex = 45;
+        gbVisualMode.TabStop = false;
+        // 
+        // gbTools
+        // 
+        gbTools.BackColor = System.Drawing.Color.Transparent;
+        gbTools.Controls.Add(rbEraser);
+        gbTools.Controls.Add(rbWall);
+        gbTools.Controls.Add(rbPan);
+        gbTools.Controls.Add(rbExit);
+        gbTools.Controls.Add(rbHazard);
+        gbTools.Controls.Add(rbSpawn);
+        gbTools.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+        gbTools.Location = new System.Drawing.Point(346, 44);
+        gbTools.Name = "gbTools";
+        gbTools.Size = new System.Drawing.Size(397, 69);
+        gbTools.TabIndex = 46;
+        gbTools.TabStop = false;
         // 
         // Form1
         // 
@@ -527,6 +646,7 @@ partial class Form1
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         BackColor = System.Drawing.SystemColors.Control;
         ClientSize = new System.Drawing.Size(701, 523);
+        Controls.Add(gbVisualMode);
         Controls.Add(pnlGridHost);
         Controls.Add(nudRiskWeight);
         Controls.Add(lblRiskWeight);
@@ -553,8 +673,6 @@ partial class Form1
         Controls.Add(btnRun);
         Controls.Add(lblSpeed);
         Controls.Add(tbSpeed);
-        Controls.Add(rbInstantMode);
-        Controls.Add(rbStepMode);
         Controls.Add(lblSimulationControls);
         Controls.Add(cboAlgorithm);
         Controls.Add(lblAlgorithm);
@@ -564,12 +682,8 @@ partial class Form1
         Controls.Add(nudSeverity);
         Controls.Add(lblHazardModifier);
         Controls.Add(lblTools);
-        Controls.Add(rbEraser);
-        Controls.Add(rbSpawn);
-        Controls.Add(rbHazard);
-        Controls.Add(rbExit);
-        Controls.Add(rbWall);
         Controls.Add(lblScenarioEditor);
+        Controls.Add(gbTools);
         DoubleBuffered = true;
         Location = new System.Drawing.Point(15, 15);
         ((System.ComponentModel.ISupportInitialize)nudSeverity).EndInit();
@@ -577,12 +691,32 @@ partial class Form1
         ((System.ComponentModel.ISupportInitialize)tbSpeed).EndInit();
         ((System.ComponentModel.ISupportInitialize)nudRiskWeight).EndInit();
         pnlGridHost.ResumeLayout(false);
+        pnlLegend.ResumeLayout(false);
+        pnlLegendBody.ResumeLayout(false);
+        pnlLegendHeader.ResumeLayout(false);
+        pnlLegendHeader.PerformLayout();
+        gbVisualMode.ResumeLayout(false);
+        gbTools.ResumeLayout(false);
         ResumeLayout(false);
         PerformLayout();
     }
 
-    private System.Windows.Forms.Panel pnlLegend;
+    private System.Windows.Forms.GroupBox gbTools;
 
+    private System.Windows.Forms.GroupBox gbVisualMode;
+
+    private System.Windows.Forms.RadioButton rbPan;
+    
+    private System.Windows.Forms.FlowLayoutPanel flpLegendItems;
+
+    private System.Windows.Forms.Panel pnlLegendBody;
+
+    private System.Windows.Forms.Button btnToggleLegend;
+
+    private System.Windows.Forms.Panel pnlLegendHeader;
+    private System.Windows.Forms.Label lblLegendLabel;
+
+    private System.Windows.Forms.Panel pnlLegend;
     private System.Windows.Forms.Panel pnlGridHost;
 
     private System.Windows.Forms.Label lblRiskWeight;
