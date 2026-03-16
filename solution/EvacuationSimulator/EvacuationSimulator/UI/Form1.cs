@@ -92,11 +92,23 @@ public partial class Form1 : Form
                 $"Evacuated: {evacString}";
         }
         
-        Hazard? hazard = scenarioManager.HAzards.FirstOrDefault(h => h.Position == cell);
+        Hazard? hazard = scenarioManager.Hazards.FirstOrDefault(h => h.Position == cell);
         if (hazard is not null)
         {
-            
+            return $"Hazard #{hazard.Id}\n" +
+                   $"Position: ({hazard.Position.X}, {hazard.Position.Y})\n" +
+                   $"Severity : {hazard.Severity:F2}\n" +
+                   $"Decay Rate: {hazard.DecayRate:F2}";
         }
+        
+        CellType cellType = scenarioManager.CurrentGrid.GetCell(cell);
+
+        return cellType switch
+        {
+            CellType.Exit => $"Exit\nPosition: ({cell.X}, {cell.Y})",
+            CellType.Spawn => $"Spawn\nPosition: ({cell.X}, {cell.Y})",
+            _ => null
+        };
     }
     
     private void SetupGridViewport()
@@ -342,6 +354,64 @@ public partial class Form1 : Form
             simulation?.Agents,
             viewportOffsetX,
             viewportOffsetY);
+
+        if (showHoverTooltip && !string.IsNullOrWhiteSpace(hoverTooltipText))
+        {
+            DrawHoverTooltip(e.Graphics, hoverTooltipText!, hoverMouseLocation);
+        }
+    }
+
+    private void DrawHoverTooltip(Graphics graphics, string text, System.Drawing.Point mouseLocation)
+    {
+        using Font tooltipFont = new Font("Segoe UI", 9F);
+        Size textSize = TextRenderer.MeasureText(
+            graphics,
+            text,
+            tooltipFont,
+            new Size(300, int.MaxValue),
+            TextFormatFlags.WordBreak);
+
+        const int padding = 8;
+        const int offset = 16;
+        
+        Rectangle tooltipRect = new Rectangle(
+            mouseLocation.X + offset,
+            mouseLocation.Y + offset,
+            textSize.Width + padding * 2,
+            textSize.Height + padding * 2);
+
+        if (tooltipRect.Right > pnlGrid.ClientSize.Width)
+            tooltipRect.X = mouseLocation.X - tooltipRect.Width - 8;
+
+        if (tooltipRect.Bottom > pnlGrid.ClientSize.Height)
+            tooltipRect.Y = mouseLocation.Y - tooltipRect.Height - 8;
+
+        if (tooltipRect.X < 0)
+            tooltipRect.X = 4;
+
+        if (tooltipRect.Y < 0)
+            tooltipRect.Y = 4;
+
+        using SolidBrush backgroundBrush = new SolidBrush(Color.FromArgb(245, 255, 255, 255));
+        using Pen borderPen = new Pen(Color.DimGray);
+        using SolidBrush textBrush = new SolidBrush(Color.Black);
+        
+        graphics.FillRectangle(backgroundBrush, tooltipRect);
+        graphics.DrawRectangle(borderPen, tooltipRect);
+
+        Rectangle textRect = new Rectangle(
+            tooltipRect.X + padding,
+            tooltipRect.Y + padding,
+            tooltipRect.Width - padding * 2,
+            tooltipRect.Height - padding * 2);
+        
+        TextRenderer.DrawText(
+            graphics,
+            text,
+            tooltipFont,
+            textRect,
+            Color.Black,
+            TextFormatFlags.WordBreak);
     }
 
     private void ApplyToolAtCell(Point cell)
@@ -407,7 +477,12 @@ public partial class Form1 : Form
         if (gridInteractionMode == GridInteractionMode.Pan)
         {
             if (!isPanningGrid)
+            {
+                showHoverTooltip = false;
+                hoverTooltipText = null;
+                pnlGrid.Invalidate();
                 return;
+            }
 
             System.Drawing.Point currentMouseScreen = Control.MousePosition;
 
@@ -418,13 +493,37 @@ public partial class Form1 : Form
             viewportOffsetY = panStartOffsetY + dy;
 
             ClampViewport();
+            showHoverTooltip = false;
+            hoverTooltipText = null;
             pnlGrid.Invalidate();
 
             return;
         }
-        
-        if (!isPaintingGrid || activePaintButton != MouseButtons.Left)
+
+        if (isPaintingGrid)
+        {
+            showHoverTooltip = false;
+            hoverTooltipText = null;
+        }else if (CanShowSimulationTooltip()
+                  && gridRenderer.TryGetCellFromPixel(e.Location, scenarioManager.CurrentGrid, out Point hoverCell))
+        {
+            string? newTooltipText = GetTooltipTextForCell(hoverCell);
+
+            hoverMouseLocation = e.Location;
+            hoverTooltipText = newTooltipText;
+            showHoverTooltip = !string.IsNullOrWhiteSpace(newTooltipText);
+        }
+        else
+        {
+            showHoverTooltip = false;
+            hoverTooltipText = null;
+        }
+
+        if (!isPaintingGrid || activePaintButton == MouseButtons.None)
+        {
+            pnlGrid.Invalidate();
             return;
+        }
         
         if (!gridRenderer.TryGetCellFromPixel(e.Location, scenarioManager.CurrentGrid, out Point cell))
             return;
@@ -460,6 +559,11 @@ public partial class Form1 : Form
 
         isPanningGrid = false;
         pnlGrid.Cursor = rbPan.Checked ? Cursors.Hand : Cursors.Default;
+
+        showHoverTooltip = false;
+        hoverTooltipText = null;
+        
+        pnlGrid.Invalidate();
     }
     
     private void pnlGrid_MouseWheel(object sender, MouseEventArgs e)
