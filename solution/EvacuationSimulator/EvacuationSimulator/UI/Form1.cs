@@ -37,7 +37,7 @@ public partial class Form1 : Form
     private int viewportLeftPadding = 40;
     private int viewportRightPadding = 40;
     private int viewportTopPadding = 40;
-    private int viewportBottomPaddong = 40;
+    private int viewportBottomPadding = 40;
     
     private bool isPanningGrid = false;
     private System.Drawing.Point panStartMouseScreen;
@@ -115,17 +115,15 @@ public partial class Form1 : Form
     {
         pnlGrid.Parent = pnlGridHost;
         pnlGrid.Dock = DockStyle.Fill;
-        pnlGrid.Location = new System.Drawing.Point(0, 0);
         
         gridRenderer.SetCellSize(DefaultEditCellSize);
-        UpdateGridCanvasSize();
+        ClampViewport();
+        pnlGrid.Invalidate();
     }
 
     private void UpdateGridCanvasSize()
     {
-        Size canvasSize = gridRenderer.GetCanvasSize(scenarioManager.CurrentGrid);
-        pnlGrid.Size = canvasSize; 
-            
+        ClampViewport();
         pnlGrid.Invalidate();
         PositionLegendOverlay();
     }
@@ -160,6 +158,18 @@ public partial class Form1 : Form
         tbSpeed.Minimum = 1;
         tbSpeed.Maximum = 10;
         tbSpeed.Value = 5;
+
+        nudGridHeight.Minimum = 5;
+        nudGridHeight.Maximum = 200;
+        nudGridHeight.DecimalPlaces = 0;
+        nudGridHeight.Increment = 1;
+        nudGridHeight.Value = scenarioManager.CurrentGrid.Height;
+        
+        nudGridWidth.Minimum = 5;
+        nudGridWidth.Maximum = 200;
+        nudGridWidth.DecimalPlaces = 0;
+        nudGridWidth.Increment = 1;
+        nudGridWidth.Value = scenarioManager.CurrentGrid.Width;
 
         UpdateTimerInterval();
     }
@@ -595,9 +605,9 @@ public partial class Form1 : Form
         int maxX = Math.Max(xA, xB);
         
         int yA = viewportTopPadding;
-        int yB = pnlGrid.Height - gridPixelHeight - viewportBottomPaddong;
-        int minY = Math.Min(xA, xB);
-        int maxY = Math.Max(xA, xB);
+        int yB = pnlGrid.Height - gridPixelHeight - viewportBottomPadding;
+        int minY = Math.Min(yA, yB);
+        int maxY = Math.Max(yA, yB);
         
         viewportOffsetX = Math.Max(minX, Math.Min(viewportOffsetX, maxX));
         viewportOffsetY = Math.Max(minY, Math.Min(viewportOffsetY, maxY));
@@ -673,4 +683,5 @@ public partial class Form1 : Form
     {
         UpdateTimerInterval();
     }
+    
 }

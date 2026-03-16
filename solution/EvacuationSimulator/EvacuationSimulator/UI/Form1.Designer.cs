@@ -31,48 +31,59 @@ partial class Form1
     /// </summary>
     private void InitializeComponent()
     {
-        lblScenarioEditor = new System.Windows.Forms.Label();
-        rbWall = new System.Windows.Forms.RadioButton();
-        rbExit = new System.Windows.Forms.RadioButton();
-        rbHazard = new System.Windows.Forms.RadioButton();
-        rbSpawn = new System.Windows.Forms.RadioButton();
-        rbEraser = new System.Windows.Forms.RadioButton();
-        lblTools = new System.Windows.Forms.Label();
-        lblHazardModifier = new System.Windows.Forms.Label();
-        nudSeverity = new System.Windows.Forms.NumericUpDown();
-        lblSeverity = new System.Windows.Forms.Label();
-        lblDecayRate = new System.Windows.Forms.Label();
-        nudDecayRate = new System.Windows.Forms.NumericUpDown();
-        lblAlgorithm = new System.Windows.Forms.Label();
-        cboAlgorithm = new System.Windows.Forms.ComboBox();
-        lblSimulationControls = new System.Windows.Forms.Label();
-        rbStepMode = new System.Windows.Forms.RadioButton();
-        rbInstantMode = new System.Windows.Forms.RadioButton();
-        tbSpeed = new System.Windows.Forms.TrackBar();
-        lblSpeed = new System.Windows.Forms.Label();
-        btnRun = new System.Windows.Forms.Button();
-        btnStep = new System.Windows.Forms.Button();
-        btnClearScenario = new System.Windows.Forms.Button();
-        btnResetSim = new System.Windows.Forms.Button();
-        lblEvacTimeLabel = new System.Windows.Forms.Label();
-        lblResultsPanel = new System.Windows.Forms.Label();
-        lblSimMetrics = new System.Windows.Forms.Label();
-        lblAlgMetrics = new System.Windows.Forms.Label();
-        lblEvacuatedLabel = new System.Windows.Forms.Label();
-        lblCompletionLabel = new System.Windows.Forms.Label();
-        lblAvgWaitLabel = new System.Windows.Forms.Label();
-        lblAvgRiskLabel = new System.Windows.Forms.Label();
-        lblEvacTime = new System.Windows.Forms.Label();
-        lblEvacuated = new System.Windows.Forms.Label();
-        lblCompletion = new System.Windows.Forms.Label();
-        lblAvgWait = new System.Windows.Forms.Label();
-        lblAvgRisk = new System.Windows.Forms.Label();
+        pnlMain = new System.Windows.Forms.Panel();
+        pnlBottom = new System.Windows.Forms.Panel();
+        gbResults = new System.Windows.Forms.GroupBox();
         lblRuntime = new System.Windows.Forms.Label();
         lblNodes = new System.Windows.Forms.Label();
         lblRuntimeLabel = new System.Windows.Forms.Label();
         lblNodesLabel = new System.Windows.Forms.Label();
-        lblRiskWeight = new System.Windows.Forms.Label();
+        lblAvgRisk = new System.Windows.Forms.Label();
+        lblAvgRiskLabel = new System.Windows.Forms.Label();
+        lblAvgWait = new System.Windows.Forms.Label();
+        lblAvgWaitLabel = new System.Windows.Forms.Label();
+        lblCompletion = new System.Windows.Forms.Label();
+        lblCompletionLabel = new System.Windows.Forms.Label();
+        lblEvacuated = new System.Windows.Forms.Label();
+        lblEvacuatedLabel = new System.Windows.Forms.Label();
+        lblEvacTime = new System.Windows.Forms.Label();
+        lblEvacTimeLabel = new System.Windows.Forms.Label();
+        gbSimulation = new System.Windows.Forms.GroupBox();
+        gbVisualModes = new System.Windows.Forms.GroupBox();
+        rbInstantMode = new System.Windows.Forms.RadioButton();
+        rbStepMode = new System.Windows.Forms.RadioButton();
+        tbSpeed = new System.Windows.Forms.TrackBar();
+        lblSpeed = new System.Windows.Forms.Label();
+        btnResetSim = new System.Windows.Forms.Button();
+        btnStep = new System.Windows.Forms.Button();
+        btnRun = new System.Windows.Forms.Button();
         nudRiskWeight = new System.Windows.Forms.NumericUpDown();
+        lblRiskWeight = new System.Windows.Forms.Label();
+        cboAlgorithm = new System.Windows.Forms.ComboBox();
+        lblAlgorithm = new System.Windows.Forms.Label();
+        pnlRight = new System.Windows.Forms.Panel();
+        gbGridSettings = new System.Windows.Forms.GroupBox();
+        btnResizeGrid = new System.Windows.Forms.Button();
+        nudGridHeight = new System.Windows.Forms.NumericUpDown();
+        lblGridHeight = new System.Windows.Forms.Label();
+        nudGridWidth = new System.Windows.Forms.NumericUpDown();
+        lblGridWidth = new System.Windows.Forms.Label();
+        gbScenarioActions = new System.Windows.Forms.GroupBox();
+        button1 = new System.Windows.Forms.Button();
+        btnClearScenario = new System.Windows.Forms.Button();
+        gbHazardModifier = new System.Windows.Forms.GroupBox();
+        nudDecayRate = new System.Windows.Forms.NumericUpDown();
+        lblDecayRate = new System.Windows.Forms.Label();
+        nudSeverity = new System.Windows.Forms.NumericUpDown();
+        lblSeverity = new System.Windows.Forms.Label();
+        gbTools = new System.Windows.Forms.GroupBox();
+        rbPan = new System.Windows.Forms.RadioButton();
+        rbEraser = new System.Windows.Forms.RadioButton();
+        rbExit = new System.Windows.Forms.RadioButton();
+        rbSpawn = new System.Windows.Forms.RadioButton();
+        rbHazard = new System.Windows.Forms.RadioButton();
+        rbWall = new System.Windows.Forms.RadioButton();
+        pnlLeft = new System.Windows.Forms.Panel();
         pnlGridHost = new System.Windows.Forms.Panel();
         pnlLegend = new System.Windows.Forms.Panel();
         pnlLegendBody = new System.Windows.Forms.Panel();
@@ -81,475 +92,667 @@ partial class Form1
         btnToggleLegend = new System.Windows.Forms.Button();
         lblLegendLabel = new System.Windows.Forms.Label();
         pnlGrid = new EvacuationSimulator.UI.DoubleBufferedPanel();
-        rbPan = new System.Windows.Forms.RadioButton();
-        gbVisualMode = new System.Windows.Forms.GroupBox();
-        gbTools = new System.Windows.Forms.GroupBox();
-        ((System.ComponentModel.ISupportInitialize)nudSeverity).BeginInit();
-        ((System.ComponentModel.ISupportInitialize)nudDecayRate).BeginInit();
+        pnlMain.SuspendLayout();
+        pnlBottom.SuspendLayout();
+        gbResults.SuspendLayout();
+        gbSimulation.SuspendLayout();
+        gbVisualModes.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)tbSpeed).BeginInit();
         ((System.ComponentModel.ISupportInitialize)nudRiskWeight).BeginInit();
+        pnlRight.SuspendLayout();
+        gbGridSettings.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)nudGridHeight).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)nudGridWidth).BeginInit();
+        gbScenarioActions.SuspendLayout();
+        gbHazardModifier.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)nudDecayRate).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)nudSeverity).BeginInit();
+        gbTools.SuspendLayout();
+        pnlLeft.SuspendLayout();
         pnlGridHost.SuspendLayout();
         pnlLegend.SuspendLayout();
         pnlLegendBody.SuspendLayout();
         pnlLegendHeader.SuspendLayout();
-        gbVisualMode.SuspendLayout();
-        gbTools.SuspendLayout();
         SuspendLayout();
         // 
-        // lblScenarioEditor
-        // 
-        lblScenarioEditor.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
-        lblScenarioEditor.Location = new System.Drawing.Point(430, 9);
-        lblScenarioEditor.Name = "lblScenarioEditor";
-        lblScenarioEditor.Size = new System.Drawing.Size(188, 32);
-        lblScenarioEditor.TabIndex = 1;
-        lblScenarioEditor.Text = "Scenario Editor";
-        lblScenarioEditor.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-        // 
-        // rbWall
-        // 
-        rbWall.Location = new System.Drawing.Point(2, 21);
-        rbWall.Name = "rbWall";
-        rbWall.Size = new System.Drawing.Size(49, 26);
-        rbWall.TabIndex = 2;
-        rbWall.TabStop = true;
-        rbWall.Text = "Wall";
-        rbWall.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-        rbWall.UseVisualStyleBackColor = true;
-        rbWall.CheckedChanged += ToolRadioButton_CheckedChanged;
-        // 
-        // rbExit
-        // 
-        rbExit.Location = new System.Drawing.Point(57, 21);
-        rbExit.Name = "rbExit";
-        rbExit.Size = new System.Drawing.Size(49, 26);
-        rbExit.TabIndex = 3;
-        rbExit.TabStop = true;
-        rbExit.Text = "Exit";
-        rbExit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-        rbExit.UseVisualStyleBackColor = true;
-        rbExit.CheckedChanged += ToolRadioButton_CheckedChanged;
-        // 
-        // rbHazard
-        // 
-        rbHazard.Location = new System.Drawing.Point(112, 21);
-        rbHazard.Name = "rbHazard";
-        rbHazard.Size = new System.Drawing.Size(64, 26);
-        rbHazard.TabIndex = 4;
-        rbHazard.TabStop = true;
-        rbHazard.Text = "Hazard";
-        rbHazard.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-        rbHazard.UseVisualStyleBackColor = true;
-        rbHazard.CheckedChanged += ToolRadioButton_CheckedChanged;
-        // 
-        // rbSpawn
-        // 
-        rbSpawn.Location = new System.Drawing.Point(182, 21);
-        rbSpawn.Name = "rbSpawn";
-        rbSpawn.Size = new System.Drawing.Size(64, 26);
-        rbSpawn.TabIndex = 5;
-        rbSpawn.TabStop = true;
-        rbSpawn.Text = "Spawn";
-        rbSpawn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-        rbSpawn.UseVisualStyleBackColor = true;
-        rbSpawn.CheckedChanged += ToolRadioButton_CheckedChanged;
-        // 
-        // rbEraser
-        // 
-        rbEraser.Location = new System.Drawing.Point(272, 11);
-        rbEraser.Name = "rbEraser";
-        rbEraser.Size = new System.Drawing.Size(60, 26);
-        rbEraser.TabIndex = 6;
-        rbEraser.TabStop = true;
-        rbEraser.Text = "Eraser";
-        rbEraser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-        rbEraser.UseVisualStyleBackColor = true;
-        rbEraser.CheckedChanged += ToolRadioButton_CheckedChanged;
-        // 
-        // lblTools
-        // 
-        lblTools.Font = new System.Drawing.Font("Segoe UI", 12F);
-        lblTools.Location = new System.Drawing.Point(428, 40);
-        lblTools.Name = "lblTools";
-        lblTools.Size = new System.Drawing.Size(189, 23);
-        lblTools.TabIndex = 7;
-        lblTools.Text = "Tools";
-        lblTools.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-        // 
-        // lblHazardModifier
-        // 
-        lblHazardModifier.Font = new System.Drawing.Font("Segoe UI", 12F);
-        lblHazardModifier.Location = new System.Drawing.Point(430, 94);
-        lblHazardModifier.Name = "lblHazardModifier";
-        lblHazardModifier.Size = new System.Drawing.Size(189, 23);
-        lblHazardModifier.TabIndex = 8;
-        lblHazardModifier.Text = "Hazard Modifier";
-        lblHazardModifier.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-        // 
-        // nudSeverity
-        // 
-        nudSeverity.BorderStyle = System.Windows.Forms.BorderStyle.None;
-        nudSeverity.DecimalPlaces = 1;
-        nudSeverity.Location = new System.Drawing.Point(432, 120);
-        nudSeverity.Name = "nudSeverity";
-        nudSeverity.Size = new System.Drawing.Size(60, 19);
-        nudSeverity.TabIndex = 9;
-        // 
-        // lblSeverity
-        // 
-        lblSeverity.Location = new System.Drawing.Point(346, 120);
-        lblSeverity.Name = "lblSeverity";
-        lblSeverity.Size = new System.Drawing.Size(80, 18);
-        lblSeverity.TabIndex = 10;
-        lblSeverity.Text = "Severity";
-        lblSeverity.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-        // 
-        // lblDecayRate
-        // 
-        lblDecayRate.Location = new System.Drawing.Point(538, 120);
-        lblDecayRate.Name = "lblDecayRate";
-        lblDecayRate.Size = new System.Drawing.Size(80, 18);
-        lblDecayRate.TabIndex = 11;
-        lblDecayRate.Text = "Decay Rate";
-        lblDecayRate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-        // 
-        // nudDecayRate
-        // 
-        nudDecayRate.BorderStyle = System.Windows.Forms.BorderStyle.None;
-        nudDecayRate.DecimalPlaces = 1;
-        nudDecayRate.Location = new System.Drawing.Point(624, 119);
-        nudDecayRate.Name = "nudDecayRate";
-        nudDecayRate.Size = new System.Drawing.Size(60, 19);
-        nudDecayRate.TabIndex = 12;
-        // 
-        // lblAlgorithm
-        // 
-        lblAlgorithm.Font = new System.Drawing.Font("Segoe UI", 12F);
-        lblAlgorithm.Location = new System.Drawing.Point(430, 162);
-        lblAlgorithm.Name = "lblAlgorithm";
-        lblAlgorithm.Size = new System.Drawing.Size(189, 23);
-        lblAlgorithm.TabIndex = 13;
-        lblAlgorithm.Text = "Algorithm";
-        lblAlgorithm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-        // 
-        // cboAlgorithm
-        // 
-        cboAlgorithm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-        cboAlgorithm.FormattingEnabled = true;
-        cboAlgorithm.Items.AddRange(new object[] { "Dijkstra", "A*", "Breadth-First Search", "Greedy Best-First" });
-        cboAlgorithm.Location = new System.Drawing.Point(404, 188);
-        cboAlgorithm.Name = "cboAlgorithm";
-        cboAlgorithm.Size = new System.Drawing.Size(244, 23);
-        cboAlgorithm.TabIndex = 14;
-        // 
-        // lblSimulationControls
-        // 
-        lblSimulationControls.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
-        lblSimulationControls.Location = new System.Drawing.Point(402, 243);
-        lblSimulationControls.Name = "lblSimulationControls";
-        lblSimulationControls.Size = new System.Drawing.Size(241, 32);
-        lblSimulationControls.TabIndex = 15;
-        lblSimulationControls.Text = "Simulation Controls";
-        lblSimulationControls.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-        // 
-        // rbStepMode
-        // 
-        rbStepMode.Location = new System.Drawing.Point(0, 11);
-        rbStepMode.Name = "rbStepMode";
-        rbStepMode.Size = new System.Drawing.Size(85, 26);
-        rbStepMode.TabIndex = 16;
-        rbStepMode.TabStop = true;
-        rbStepMode.Text = "Step Mode";
-        rbStepMode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-        rbStepMode.UseVisualStyleBackColor = true;
-        // 
-        // rbInstantMode
-        // 
-        rbInstantMode.Location = new System.Drawing.Point(0, 41);
-        rbInstantMode.Name = "rbInstantMode";
-        rbInstantMode.Size = new System.Drawing.Size(96, 26);
-        rbInstantMode.TabIndex = 17;
-        rbInstantMode.TabStop = true;
-        rbInstantMode.Text = "Instant Mode";
-        rbInstantMode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-        rbInstantMode.UseVisualStyleBackColor = true;
-        // 
-        // tbSpeed
-        // 
-        tbSpeed.Location = new System.Drawing.Point(443, 304);
-        tbSpeed.Minimum = 1;
-        tbSpeed.Name = "tbSpeed";
-        tbSpeed.Size = new System.Drawing.Size(111, 45);
-        tbSpeed.TabIndex = 18;
-        tbSpeed.Value = 1;
-        tbSpeed.ValueChanged += tbSpeed_ValueChanged;
-        // 
-        // lblSpeed
-        // 
-        lblSpeed.Location = new System.Drawing.Point(459, 283);
-        lblSpeed.Name = "lblSpeed";
-        lblSpeed.Size = new System.Drawing.Size(80, 18);
-        lblSpeed.TabIndex = 19;
-        lblSpeed.Text = "Speed";
-        lblSpeed.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-        // 
-        // btnRun
-        // 
-        btnRun.Location = new System.Drawing.Point(553, 278);
-        btnRun.Name = "btnRun";
-        btnRun.Size = new System.Drawing.Size(65, 29);
-        btnRun.TabIndex = 20;
-        btnRun.Text = "Run";
-        btnRun.UseVisualStyleBackColor = true;
-        btnRun.Click += btnRun_Click;
-        // 
-        // btnStep
-        // 
-        btnStep.Location = new System.Drawing.Point(624, 278);
-        btnStep.Name = "btnStep";
-        btnStep.Size = new System.Drawing.Size(65, 29);
-        btnStep.TabIndex = 21;
-        btnStep.Text = "Step";
-        btnStep.UseVisualStyleBackColor = true;
-        btnStep.Click += btnStep_Click;
-        // 
-        // btnClearScenario
-        // 
-        btnClearScenario.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-        btnClearScenario.Location = new System.Drawing.Point(459, 217);
-        btnClearScenario.Name = "btnClearScenario";
-        btnClearScenario.Size = new System.Drawing.Size(129, 29);
-        btnClearScenario.TabIndex = 22;
-        btnClearScenario.Text = "Clear Scenario";
-        btnClearScenario.UseVisualStyleBackColor = true;
-        btnClearScenario.Click += btnClearScenario_Click;
-        // 
-        // btnResetSim
-        // 
-        btnResetSim.Location = new System.Drawing.Point(573, 312);
-        btnResetSim.Name = "btnResetSim";
-        btnResetSim.Size = new System.Drawing.Size(97, 29);
-        btnResetSim.TabIndex = 23;
-        btnResetSim.Text = "Reset";
-        btnResetSim.UseVisualStyleBackColor = true;
-        btnResetSim.Click += btnResetSim_Click;
-        // 
-        // lblEvacTimeLabel
-        // 
-        lblEvacTimeLabel.Location = new System.Drawing.Point(4, 399);
-        lblEvacTimeLabel.Name = "lblEvacTimeLabel";
-        lblEvacTimeLabel.Size = new System.Drawing.Size(124, 21);
-        lblEvacTimeLabel.TabIndex = 24;
-        lblEvacTimeLabel.Text = "Evacuation Time:";
-        lblEvacTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-        // 
-        // lblResultsPanel
-        // 
-        lblResultsPanel.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold);
-        lblResultsPanel.Location = new System.Drawing.Point(4, 341);
-        lblResultsPanel.Name = "lblResultsPanel";
-        lblResultsPanel.Size = new System.Drawing.Size(389, 32);
-        lblResultsPanel.TabIndex = 25;
-        lblResultsPanel.Text = "Results";
-        lblResultsPanel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-        // 
-        // lblSimMetrics
-        // 
-        lblSimMetrics.Font = new System.Drawing.Font("Segoe UI", 12F);
-        lblSimMetrics.Location = new System.Drawing.Point(4, 373);
-        lblSimMetrics.Name = "lblSimMetrics";
-        lblSimMetrics.Size = new System.Drawing.Size(196, 23);
-        lblSimMetrics.TabIndex = 26;
-        lblSimMetrics.Text = "Simulation Metrics";
-        lblSimMetrics.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-        // 
-        // lblAlgMetrics
-        // 
-        lblAlgMetrics.Font = new System.Drawing.Font("Segoe UI", 12F);
-        lblAlgMetrics.Location = new System.Drawing.Point(206, 373);
-        lblAlgMetrics.Name = "lblAlgMetrics";
-        lblAlgMetrics.Size = new System.Drawing.Size(196, 23);
-        lblAlgMetrics.TabIndex = 27;
-        lblAlgMetrics.Text = "Algorithm Metrics";
-        lblAlgMetrics.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-        // 
-        // lblEvacuatedLabel
-        // 
-        lblEvacuatedLabel.Location = new System.Drawing.Point(4, 420);
-        lblEvacuatedLabel.Name = "lblEvacuatedLabel";
-        lblEvacuatedLabel.Size = new System.Drawing.Size(124, 21);
-        lblEvacuatedLabel.TabIndex = 28;
-        lblEvacuatedLabel.Text = "Agents Evacuated:";
-        lblEvacuatedLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-        // 
-        // lblCompletionLabel
-        // 
-        lblCompletionLabel.Location = new System.Drawing.Point(4, 441);
-        lblCompletionLabel.Name = "lblCompletionLabel";
-        lblCompletionLabel.Size = new System.Drawing.Size(124, 21);
-        lblCompletionLabel.TabIndex = 29;
-        lblCompletionLabel.Text = "Evac. Completion %:";
-        lblCompletionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-        // 
-        // lblAvgWaitLabel
-        // 
-        lblAvgWaitLabel.Location = new System.Drawing.Point(4, 462);
-        lblAvgWaitLabel.Name = "lblAvgWaitLabel";
-        lblAvgWaitLabel.Size = new System.Drawing.Size(124, 21);
-        lblAvgWaitLabel.TabIndex = 30;
-        lblAvgWaitLabel.Text = "Avg. Waiting Time:";
-        lblAvgWaitLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-        // 
-        // lblAvgRiskLabel
-        // 
-        lblAvgRiskLabel.Location = new System.Drawing.Point(4, 483);
-        lblAvgRiskLabel.Name = "lblAvgRiskLabel";
-        lblAvgRiskLabel.Size = new System.Drawing.Size(124, 21);
-        lblAvgRiskLabel.TabIndex = 31;
-        lblAvgRiskLabel.Text = "Avg. Risk Exposure:";
-        lblAvgRiskLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-        // 
-        // lblEvacTime
-        // 
-        lblEvacTime.Location = new System.Drawing.Point(134, 399);
-        lblEvacTime.Name = "lblEvacTime";
-        lblEvacTime.Size = new System.Drawing.Size(66, 21);
-        lblEvacTime.TabIndex = 32;
-        lblEvacTime.Text = "0";
-        lblEvacTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
-        // lblEvacuated
-        // 
-        lblEvacuated.Location = new System.Drawing.Point(134, 420);
-        lblEvacuated.Name = "lblEvacuated";
-        lblEvacuated.Size = new System.Drawing.Size(66, 21);
-        lblEvacuated.TabIndex = 33;
-        lblEvacuated.Text = "0";
-        lblEvacuated.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
-        // lblCompletion
-        // 
-        lblCompletion.Location = new System.Drawing.Point(134, 441);
-        lblCompletion.Name = "lblCompletion";
-        lblCompletion.Size = new System.Drawing.Size(66, 21);
-        lblCompletion.TabIndex = 34;
-        lblCompletion.Text = "0";
-        lblCompletion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
-        // lblAvgWait
-        // 
-        lblAvgWait.Location = new System.Drawing.Point(134, 462);
-        lblAvgWait.Name = "lblAvgWait";
-        lblAvgWait.Size = new System.Drawing.Size(66, 21);
-        lblAvgWait.TabIndex = 35;
-        lblAvgWait.Text = "0";
-        lblAvgWait.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-        // 
-        // lblAvgRisk
-        // 
-        lblAvgRisk.Location = new System.Drawing.Point(134, 483);
-        lblAvgRisk.Name = "lblAvgRisk";
-        lblAvgRisk.Size = new System.Drawing.Size(57, 21);
-        lblAvgRisk.TabIndex = 36;
-        lblAvgRisk.Text = "0";
-        lblAvgRisk.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+        // pnlMain
+        // 
+        pnlMain.Controls.Add(pnlBottom);
+        pnlMain.Controls.Add(pnlRight);
+        pnlMain.Controls.Add(pnlLeft);
+        pnlMain.Location = new System.Drawing.Point(12, 12);
+        pnlMain.Name = "pnlMain";
+        pnlMain.Size = new System.Drawing.Size(760, 537);
+        pnlMain.TabIndex = 0;
+        // 
+        // pnlBottom
+        // 
+        pnlBottom.Controls.Add(gbResults);
+        pnlBottom.Location = new System.Drawing.Point(3, 389);
+        pnlBottom.Name = "pnlBottom";
+        pnlBottom.Size = new System.Drawing.Size(754, 145);
+        pnlBottom.TabIndex = 3;
+        // 
+        // gbResults
+        // 
+        gbResults.Controls.Add(lblRuntime);
+        gbResults.Controls.Add(lblNodes);
+        gbResults.Controls.Add(lblRuntimeLabel);
+        gbResults.Controls.Add(lblNodesLabel);
+        gbResults.Controls.Add(lblAvgRisk);
+        gbResults.Controls.Add(lblAvgRiskLabel);
+        gbResults.Controls.Add(lblAvgWait);
+        gbResults.Controls.Add(lblAvgWaitLabel);
+        gbResults.Controls.Add(lblCompletion);
+        gbResults.Controls.Add(lblCompletionLabel);
+        gbResults.Controls.Add(lblEvacuated);
+        gbResults.Controls.Add(lblEvacuatedLabel);
+        gbResults.Controls.Add(lblEvacTime);
+        gbResults.Controls.Add(lblEvacTimeLabel);
+        gbResults.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+        gbResults.Location = new System.Drawing.Point(0, 0);
+        gbResults.Name = "gbResults";
+        gbResults.Size = new System.Drawing.Size(380, 145);
+        gbResults.TabIndex = 0;
+        gbResults.TabStop = false;
+        gbResults.Text = "Results";
         // 
         // lblRuntime
         // 
-        lblRuntime.Location = new System.Drawing.Point(336, 417);
+        lblRuntime.BackColor = System.Drawing.Color.Transparent;
+        lblRuntime.Font = new System.Drawing.Font("Segoe UI", 9F);
+        lblRuntime.Location = new System.Drawing.Point(315, 46);
         lblRuntime.Name = "lblRuntime";
-        lblRuntime.Size = new System.Drawing.Size(57, 21);
-        lblRuntime.TabIndex = 40;
+        lblRuntime.Size = new System.Drawing.Size(49, 23);
+        lblRuntime.TabIndex = 19;
         lblRuntime.Text = "0";
         lblRuntime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
         // 
         // lblNodes
         // 
-        lblNodes.Location = new System.Drawing.Point(336, 396);
+        lblNodes.BackColor = System.Drawing.Color.Transparent;
+        lblNodes.Font = new System.Drawing.Font("Segoe UI", 9F);
+        lblNodes.Location = new System.Drawing.Point(315, 23);
         lblNodes.Name = "lblNodes";
-        lblNodes.Size = new System.Drawing.Size(57, 21);
-        lblNodes.TabIndex = 39;
+        lblNodes.Size = new System.Drawing.Size(49, 23);
+        lblNodes.TabIndex = 18;
         lblNodes.Text = "0";
         lblNodes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
         // 
         // lblRuntimeLabel
         // 
-        lblRuntimeLabel.Location = new System.Drawing.Point(206, 417);
+        lblRuntimeLabel.BackColor = System.Drawing.Color.Transparent;
+        lblRuntimeLabel.Font = new System.Drawing.Font("Segoe UI", 9F);
+        lblRuntimeLabel.Location = new System.Drawing.Point(190, 46);
         lblRuntimeLabel.Name = "lblRuntimeLabel";
-        lblRuntimeLabel.Size = new System.Drawing.Size(124, 21);
-        lblRuntimeLabel.TabIndex = 38;
+        lblRuntimeLabel.Size = new System.Drawing.Size(119, 23);
+        lblRuntimeLabel.TabIndex = 17;
         lblRuntimeLabel.Text = "Runtime:";
         lblRuntimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
         // 
         // lblNodesLabel
         // 
-        lblNodesLabel.Location = new System.Drawing.Point(206, 396);
+        lblNodesLabel.BackColor = System.Drawing.Color.Transparent;
+        lblNodesLabel.Font = new System.Drawing.Font("Segoe UI", 9F);
+        lblNodesLabel.Location = new System.Drawing.Point(190, 23);
         lblNodesLabel.Name = "lblNodesLabel";
-        lblNodesLabel.Size = new System.Drawing.Size(124, 21);
-        lblNodesLabel.TabIndex = 37;
+        lblNodesLabel.Size = new System.Drawing.Size(119, 23);
+        lblNodesLabel.TabIndex = 15;
         lblNodesLabel.Text = "Nodes Explored:";
         lblNodesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
         // 
-        // lblRiskWeight
+        // lblAvgRisk
         // 
-        lblRiskWeight.Location = new System.Drawing.Point(346, 147);
-        lblRiskWeight.Name = "lblRiskWeight";
-        lblRiskWeight.Size = new System.Drawing.Size(80, 18);
-        lblRiskWeight.TabIndex = 41;
-        lblRiskWeight.Text = "Risk Weight";
-        lblRiskWeight.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+        lblAvgRisk.BackColor = System.Drawing.Color.Transparent;
+        lblAvgRisk.Font = new System.Drawing.Font("Segoe UI", 9F);
+        lblAvgRisk.Location = new System.Drawing.Point(131, 115);
+        lblAvgRisk.Name = "lblAvgRisk";
+        lblAvgRisk.Size = new System.Drawing.Size(49, 23);
+        lblAvgRisk.TabIndex = 14;
+        lblAvgRisk.Text = "0";
+        lblAvgRisk.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+        // 
+        // lblAvgRiskLabel
+        // 
+        lblAvgRiskLabel.BackColor = System.Drawing.Color.Transparent;
+        lblAvgRiskLabel.Font = new System.Drawing.Font("Segoe UI", 9F);
+        lblAvgRiskLabel.Location = new System.Drawing.Point(6, 115);
+        lblAvgRiskLabel.Name = "lblAvgRiskLabel";
+        lblAvgRiskLabel.Size = new System.Drawing.Size(119, 23);
+        lblAvgRiskLabel.TabIndex = 13;
+        lblAvgRiskLabel.Text = "Avg. Risk Exposure:";
+        lblAvgRiskLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+        // 
+        // lblAvgWait
+        // 
+        lblAvgWait.BackColor = System.Drawing.Color.Transparent;
+        lblAvgWait.Font = new System.Drawing.Font("Segoe UI", 9F);
+        lblAvgWait.Location = new System.Drawing.Point(131, 92);
+        lblAvgWait.Name = "lblAvgWait";
+        lblAvgWait.Size = new System.Drawing.Size(49, 23);
+        lblAvgWait.TabIndex = 12;
+        lblAvgWait.Text = "0";
+        lblAvgWait.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+        // 
+        // lblAvgWaitLabel
+        // 
+        lblAvgWaitLabel.BackColor = System.Drawing.Color.Transparent;
+        lblAvgWaitLabel.Font = new System.Drawing.Font("Segoe UI", 9F);
+        lblAvgWaitLabel.Location = new System.Drawing.Point(6, 92);
+        lblAvgWaitLabel.Name = "lblAvgWaitLabel";
+        lblAvgWaitLabel.Size = new System.Drawing.Size(119, 23);
+        lblAvgWaitLabel.TabIndex = 11;
+        lblAvgWaitLabel.Text = "Avg. Wait Time:";
+        lblAvgWaitLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+        // 
+        // lblCompletion
+        // 
+        lblCompletion.BackColor = System.Drawing.Color.Transparent;
+        lblCompletion.Font = new System.Drawing.Font("Segoe UI", 9F);
+        lblCompletion.Location = new System.Drawing.Point(131, 69);
+        lblCompletion.Name = "lblCompletion";
+        lblCompletion.Size = new System.Drawing.Size(49, 23);
+        lblCompletion.TabIndex = 10;
+        lblCompletion.Text = "0";
+        lblCompletion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+        // 
+        // lblCompletionLabel
+        // 
+        lblCompletionLabel.BackColor = System.Drawing.Color.Transparent;
+        lblCompletionLabel.Font = new System.Drawing.Font("Segoe UI", 9F);
+        lblCompletionLabel.Location = new System.Drawing.Point(6, 69);
+        lblCompletionLabel.Name = "lblCompletionLabel";
+        lblCompletionLabel.Size = new System.Drawing.Size(119, 23);
+        lblCompletionLabel.TabIndex = 9;
+        lblCompletionLabel.Text = "Completion %:";
+        lblCompletionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+        // 
+        // lblEvacuated
+        // 
+        lblEvacuated.BackColor = System.Drawing.Color.Transparent;
+        lblEvacuated.Font = new System.Drawing.Font("Segoe UI", 9F);
+        lblEvacuated.Location = new System.Drawing.Point(131, 46);
+        lblEvacuated.Name = "lblEvacuated";
+        lblEvacuated.Size = new System.Drawing.Size(49, 23);
+        lblEvacuated.TabIndex = 8;
+        lblEvacuated.Text = "0";
+        lblEvacuated.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+        // 
+        // lblEvacuatedLabel
+        // 
+        lblEvacuatedLabel.BackColor = System.Drawing.Color.Transparent;
+        lblEvacuatedLabel.Font = new System.Drawing.Font("Segoe UI", 9F);
+        lblEvacuatedLabel.Location = new System.Drawing.Point(6, 46);
+        lblEvacuatedLabel.Name = "lblEvacuatedLabel";
+        lblEvacuatedLabel.Size = new System.Drawing.Size(119, 23);
+        lblEvacuatedLabel.TabIndex = 7;
+        lblEvacuatedLabel.Text = "Agents Evacuated:";
+        lblEvacuatedLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+        // 
+        // lblEvacTime
+        // 
+        lblEvacTime.BackColor = System.Drawing.Color.Transparent;
+        lblEvacTime.Font = new System.Drawing.Font("Segoe UI", 9F);
+        lblEvacTime.Location = new System.Drawing.Point(131, 23);
+        lblEvacTime.Name = "lblEvacTime";
+        lblEvacTime.Size = new System.Drawing.Size(49, 23);
+        lblEvacTime.TabIndex = 6;
+        lblEvacTime.Text = "0";
+        lblEvacTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+        // 
+        // lblEvacTimeLabel
+        // 
+        lblEvacTimeLabel.BackColor = System.Drawing.Color.Transparent;
+        lblEvacTimeLabel.Font = new System.Drawing.Font("Segoe UI", 9F);
+        lblEvacTimeLabel.Location = new System.Drawing.Point(6, 23);
+        lblEvacTimeLabel.Name = "lblEvacTimeLabel";
+        lblEvacTimeLabel.Size = new System.Drawing.Size(119, 23);
+        lblEvacTimeLabel.TabIndex = 5;
+        lblEvacTimeLabel.Text = "Evacuation Time:";
+        lblEvacTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+        // 
+        // gbSimulation
+        // 
+        gbSimulation.Controls.Add(gbVisualModes);
+        gbSimulation.Controls.Add(tbSpeed);
+        gbSimulation.Controls.Add(lblSpeed);
+        gbSimulation.Controls.Add(btnResetSim);
+        gbSimulation.Controls.Add(btnStep);
+        gbSimulation.Controls.Add(btnRun);
+        gbSimulation.Controls.Add(nudRiskWeight);
+        gbSimulation.Controls.Add(lblRiskWeight);
+        gbSimulation.Controls.Add(cboAlgorithm);
+        gbSimulation.Controls.Add(lblAlgorithm);
+        gbSimulation.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+        gbSimulation.Location = new System.Drawing.Point(0, 120);
+        gbSimulation.Name = "gbSimulation";
+        gbSimulation.Size = new System.Drawing.Size(365, 130);
+        gbSimulation.TabIndex = 2;
+        gbSimulation.TabStop = false;
+        gbSimulation.Text = "Simulation";
+        // 
+        // gbVisualModes
+        // 
+        gbVisualModes.Controls.Add(rbInstantMode);
+        gbVisualModes.Controls.Add(rbStepMode);
+        gbVisualModes.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+        gbVisualModes.Location = new System.Drawing.Point(176, 13);
+        gbVisualModes.Name = "gbVisualModes";
+        gbVisualModes.Size = new System.Drawing.Size(132, 79);
+        gbVisualModes.TabIndex = 13;
+        gbVisualModes.TabStop = false;
+        gbVisualModes.Text = "Visual Modes";
+        // 
+        // rbInstantMode
+        // 
+        rbInstantMode.BackColor = System.Drawing.Color.Transparent;
+        rbInstantMode.Font = new System.Drawing.Font("Segoe UI", 9F);
+        rbInstantMode.Location = new System.Drawing.Point(6, 49);
+        rbInstantMode.Name = "rbInstantMode";
+        rbInstantMode.Size = new System.Drawing.Size(112, 21);
+        rbInstantMode.TabIndex = 4;
+        rbInstantMode.TabStop = true;
+        rbInstantMode.Text = "Instant";
+        rbInstantMode.UseVisualStyleBackColor = false;
+        // 
+        // rbStepMode
+        // 
+        rbStepMode.BackColor = System.Drawing.Color.Transparent;
+        rbStepMode.Font = new System.Drawing.Font("Segoe UI", 9F);
+        rbStepMode.Location = new System.Drawing.Point(6, 22);
+        rbStepMode.Name = "rbStepMode";
+        rbStepMode.Size = new System.Drawing.Size(112, 21);
+        rbStepMode.TabIndex = 3;
+        rbStepMode.TabStop = true;
+        rbStepMode.Text = "Step-by-Step";
+        rbStepMode.UseVisualStyleBackColor = false;
+        // 
+        // tbSpeed
+        // 
+        tbSpeed.Location = new System.Drawing.Point(314, 39);
+        tbSpeed.Name = "tbSpeed";
+        tbSpeed.Orientation = System.Windows.Forms.Orientation.Vertical;
+        tbSpeed.Size = new System.Drawing.Size(45, 85);
+        tbSpeed.TabIndex = 12;
+        // 
+        // lblSpeed
+        // 
+        lblSpeed.BackColor = System.Drawing.Color.Transparent;
+        lblSpeed.Font = new System.Drawing.Font("Segoe UI", 9F);
+        lblSpeed.Location = new System.Drawing.Point(314, 13);
+        lblSpeed.Name = "lblSpeed";
+        lblSpeed.Size = new System.Drawing.Size(45, 23);
+        lblSpeed.TabIndex = 11;
+        lblSpeed.Text = "Speed";
+        lblSpeed.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+        // 
+        // btnResetSim
+        // 
+        btnResetSim.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+        btnResetSim.Location = new System.Drawing.Point(154, 98);
+        btnResetSim.Name = "btnResetSim";
+        btnResetSim.Size = new System.Drawing.Size(68, 26);
+        btnResetSim.TabIndex = 10;
+        btnResetSim.Text = "Reset";
+        btnResetSim.UseVisualStyleBackColor = true;
+        btnResetSim.Click += btnResetSim_Click;
+        // 
+        // btnStep
+        // 
+        btnStep.Font = new System.Drawing.Font("Segoe UI", 9F);
+        btnStep.Location = new System.Drawing.Point(80, 98);
+        btnStep.Name = "btnStep";
+        btnStep.Size = new System.Drawing.Size(68, 26);
+        btnStep.TabIndex = 9;
+        btnStep.Text = "Step";
+        btnStep.UseVisualStyleBackColor = true;
+        btnStep.Click += btnStep_Click;
+        // 
+        // btnRun
+        // 
+        btnRun.Font = new System.Drawing.Font("Segoe UI", 9F);
+        btnRun.Location = new System.Drawing.Point(6, 98);
+        btnRun.Name = "btnRun";
+        btnRun.Size = new System.Drawing.Size(68, 26);
+        btnRun.TabIndex = 8;
+        btnRun.Text = "Run";
+        btnRun.UseVisualStyleBackColor = true;
+        btnRun.Click += btnRun_Click;
         // 
         // nudRiskWeight
         // 
-        nudRiskWeight.BorderStyle = System.Windows.Forms.BorderStyle.None;
-        nudRiskWeight.DecimalPlaces = 1;
-        nudRiskWeight.Location = new System.Drawing.Point(432, 147);
+        nudRiskWeight.Font = new System.Drawing.Font("Segoe UI", 9F);
+        nudRiskWeight.Location = new System.Drawing.Point(88, 52);
         nudRiskWeight.Name = "nudRiskWeight";
-        nudRiskWeight.Size = new System.Drawing.Size(60, 19);
-        nudRiskWeight.TabIndex = 42;
+        nudRiskWeight.Size = new System.Drawing.Size(77, 23);
+        nudRiskWeight.TabIndex = 7;
+        // 
+        // lblRiskWeight
+        // 
+        lblRiskWeight.BackColor = System.Drawing.Color.Transparent;
+        lblRiskWeight.Font = new System.Drawing.Font("Segoe UI", 9F);
+        lblRiskWeight.Location = new System.Drawing.Point(3, 52);
+        lblRiskWeight.Name = "lblRiskWeight";
+        lblRiskWeight.Size = new System.Drawing.Size(79, 23);
+        lblRiskWeight.TabIndex = 6;
+        lblRiskWeight.Text = "Risk Weight";
+        lblRiskWeight.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+        // 
+        // cboAlgorithm
+        // 
+        cboAlgorithm.Font = new System.Drawing.Font("Segoe UI", 9F);
+        cboAlgorithm.FormattingEnabled = true;
+        cboAlgorithm.Location = new System.Drawing.Point(88, 23);
+        cboAlgorithm.Name = "cboAlgorithm";
+        cboAlgorithm.Size = new System.Drawing.Size(82, 23);
+        cboAlgorithm.TabIndex = 5;
+        // 
+        // lblAlgorithm
+        // 
+        lblAlgorithm.BackColor = System.Drawing.Color.Transparent;
+        lblAlgorithm.Font = new System.Drawing.Font("Segoe UI", 9F);
+        lblAlgorithm.Location = new System.Drawing.Point(3, 23);
+        lblAlgorithm.Name = "lblAlgorithm";
+        lblAlgorithm.Size = new System.Drawing.Size(79, 23);
+        lblAlgorithm.TabIndex = 4;
+        lblAlgorithm.Text = "Algorithm";
+        lblAlgorithm.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+        // 
+        // pnlRight
+        // 
+        pnlRight.Controls.Add(gbGridSettings);
+        pnlRight.Controls.Add(gbSimulation);
+        pnlRight.Controls.Add(gbScenarioActions);
+        pnlRight.Controls.Add(gbHazardModifier);
+        pnlRight.Controls.Add(gbTools);
+        pnlRight.Location = new System.Drawing.Point(389, 3);
+        pnlRight.Name = "pnlRight";
+        pnlRight.Size = new System.Drawing.Size(368, 380);
+        pnlRight.TabIndex = 1;
+        // 
+        // gbGridSettings
+        // 
+        gbGridSettings.Controls.Add(btnResizeGrid);
+        gbGridSettings.Controls.Add(nudGridHeight);
+        gbGridSettings.Controls.Add(lblGridHeight);
+        gbGridSettings.Controls.Add(nudGridWidth);
+        gbGridSettings.Controls.Add(lblGridWidth);
+        gbGridSettings.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+        gbGridSettings.Location = new System.Drawing.Point(0, 254);
+        gbGridSettings.Name = "gbGridSettings";
+        gbGridSettings.Size = new System.Drawing.Size(191, 126);
+        gbGridSettings.TabIndex = 2;
+        gbGridSettings.TabStop = false;
+        gbGridSettings.Text = "Grid Settings";
+        // 
+        // btnResizeGrid
+        // 
+        btnResizeGrid.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+        btnResizeGrid.Location = new System.Drawing.Point(3, 88);
+        btnResizeGrid.Name = "btnResizeGrid";
+        btnResizeGrid.Size = new System.Drawing.Size(182, 26);
+        btnResizeGrid.TabIndex = 14;
+        btnResizeGrid.Text = "Resize Grid";
+        btnResizeGrid.UseVisualStyleBackColor = true;
+        // 
+        // nudGridHeight
+        // 
+        nudGridHeight.Font = new System.Drawing.Font("Segoe UI", 9F);
+        nudGridHeight.Location = new System.Drawing.Point(88, 53);
+        nudGridHeight.Name = "nudGridHeight";
+        nudGridHeight.Size = new System.Drawing.Size(97, 23);
+        nudGridHeight.TabIndex = 7;
+        // 
+        // lblGridHeight
+        // 
+        lblGridHeight.BackColor = System.Drawing.Color.Transparent;
+        lblGridHeight.Font = new System.Drawing.Font("Segoe UI", 9F);
+        lblGridHeight.Location = new System.Drawing.Point(3, 52);
+        lblGridHeight.Name = "lblGridHeight";
+        lblGridHeight.Size = new System.Drawing.Size(79, 23);
+        lblGridHeight.TabIndex = 6;
+        lblGridHeight.Text = "Height";
+        lblGridHeight.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+        // 
+        // nudGridWidth
+        // 
+        nudGridWidth.Font = new System.Drawing.Font("Segoe UI", 9F);
+        nudGridWidth.Location = new System.Drawing.Point(88, 26);
+        nudGridWidth.Name = "nudGridWidth";
+        nudGridWidth.Size = new System.Drawing.Size(97, 23);
+        nudGridWidth.TabIndex = 5;
+        // 
+        // lblGridWidth
+        // 
+        lblGridWidth.BackColor = System.Drawing.Color.Transparent;
+        lblGridWidth.Font = new System.Drawing.Font("Segoe UI", 9F);
+        lblGridWidth.Location = new System.Drawing.Point(3, 25);
+        lblGridWidth.Name = "lblGridWidth";
+        lblGridWidth.Size = new System.Drawing.Size(79, 23);
+        lblGridWidth.TabIndex = 4;
+        lblGridWidth.Text = "Width";
+        lblGridWidth.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+        // 
+        // gbScenarioActions
+        // 
+        gbScenarioActions.Controls.Add(button1);
+        gbScenarioActions.Controls.Add(btnClearScenario);
+        gbScenarioActions.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+        gbScenarioActions.Location = new System.Drawing.Point(197, 254);
+        gbScenarioActions.Name = "gbScenarioActions";
+        gbScenarioActions.Size = new System.Drawing.Size(168, 126);
+        gbScenarioActions.TabIndex = 2;
+        gbScenarioActions.TabStop = false;
+        gbScenarioActions.Text = "Scenario Actions";
+        // 
+        // button1
+        // 
+        button1.Font = new System.Drawing.Font("Segoe UI", 9F);
+        button1.Location = new System.Drawing.Point(6, 58);
+        button1.Name = "button1";
+        button1.Size = new System.Drawing.Size(156, 26);
+        button1.TabIndex = 16;
+        button1.Text = "Load Example Scenario";
+        button1.UseVisualStyleBackColor = true;
+        // 
+        // btnClearScenario
+        // 
+        btnClearScenario.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+        btnClearScenario.Location = new System.Drawing.Point(6, 26);
+        btnClearScenario.Name = "btnClearScenario";
+        btnClearScenario.Size = new System.Drawing.Size(156, 26);
+        btnClearScenario.TabIndex = 15;
+        btnClearScenario.Text = "Clear Scenario";
+        btnClearScenario.UseVisualStyleBackColor = true;
+        btnClearScenario.Click += btnClearScenario_Click;
+        // 
+        // gbHazardModifier
+        // 
+        gbHazardModifier.Controls.Add(nudDecayRate);
+        gbHazardModifier.Controls.Add(lblDecayRate);
+        gbHazardModifier.Controls.Add(nudSeverity);
+        gbHazardModifier.Controls.Add(lblSeverity);
+        gbHazardModifier.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+        gbHazardModifier.Location = new System.Drawing.Point(197, 0);
+        gbHazardModifier.Name = "gbHazardModifier";
+        gbHazardModifier.Size = new System.Drawing.Size(168, 118);
+        gbHazardModifier.TabIndex = 1;
+        gbHazardModifier.TabStop = false;
+        gbHazardModifier.Text = "Hazard Modifier";
+        // 
+        // nudDecayRate
+        // 
+        nudDecayRate.Font = new System.Drawing.Font("Segoe UI", 9F);
+        nudDecayRate.Location = new System.Drawing.Point(85, 54);
+        nudDecayRate.Name = "nudDecayRate";
+        nudDecayRate.Size = new System.Drawing.Size(77, 23);
+        nudDecayRate.TabIndex = 3;
+        // 
+        // lblDecayRate
+        // 
+        lblDecayRate.BackColor = System.Drawing.Color.Transparent;
+        lblDecayRate.Font = new System.Drawing.Font("Segoe UI", 9F);
+        lblDecayRate.Location = new System.Drawing.Point(0, 53);
+        lblDecayRate.Name = "lblDecayRate";
+        lblDecayRate.Size = new System.Drawing.Size(79, 23);
+        lblDecayRate.TabIndex = 2;
+        lblDecayRate.Text = "Decay Rate";
+        lblDecayRate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+        // 
+        // nudSeverity
+        // 
+        nudSeverity.Font = new System.Drawing.Font("Segoe UI", 9F);
+        nudSeverity.Location = new System.Drawing.Point(85, 27);
+        nudSeverity.Name = "nudSeverity";
+        nudSeverity.Size = new System.Drawing.Size(77, 23);
+        nudSeverity.TabIndex = 1;
+        // 
+        // lblSeverity
+        // 
+        lblSeverity.BackColor = System.Drawing.Color.Transparent;
+        lblSeverity.Font = new System.Drawing.Font("Segoe UI", 9F);
+        lblSeverity.Location = new System.Drawing.Point(0, 26);
+        lblSeverity.Name = "lblSeverity";
+        lblSeverity.Size = new System.Drawing.Size(79, 23);
+        lblSeverity.TabIndex = 0;
+        lblSeverity.Text = "Severity";
+        lblSeverity.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+        // 
+        // gbTools
+        // 
+        gbTools.Controls.Add(rbPan);
+        gbTools.Controls.Add(rbEraser);
+        gbTools.Controls.Add(rbExit);
+        gbTools.Controls.Add(rbSpawn);
+        gbTools.Controls.Add(rbHazard);
+        gbTools.Controls.Add(rbWall);
+        gbTools.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+        gbTools.Location = new System.Drawing.Point(0, 0);
+        gbTools.Name = "gbTools";
+        gbTools.Size = new System.Drawing.Size(191, 118);
+        gbTools.TabIndex = 0;
+        gbTools.TabStop = false;
+        gbTools.Text = "Tools";
+        // 
+        // rbPan
+        // 
+        rbPan.BackColor = System.Drawing.Color.Transparent;
+        rbPan.Font = new System.Drawing.Font("Segoe UI", 9F);
+        rbPan.Location = new System.Drawing.Point(80, 80);
+        rbPan.Name = "rbPan";
+        rbPan.Size = new System.Drawing.Size(68, 21);
+        rbPan.TabIndex = 5;
+        rbPan.TabStop = true;
+        rbPan.Text = "Pan";
+        rbPan.UseVisualStyleBackColor = false;
+        rbPan.CheckedChanged += ToolRadioButton_CheckedChanged;
+        // 
+        // rbEraser
+        // 
+        rbEraser.BackColor = System.Drawing.Color.Transparent;
+        rbEraser.Font = new System.Drawing.Font("Segoe UI", 9F);
+        rbEraser.Location = new System.Drawing.Point(6, 80);
+        rbEraser.Name = "rbEraser";
+        rbEraser.Size = new System.Drawing.Size(68, 21);
+        rbEraser.TabIndex = 4;
+        rbEraser.TabStop = true;
+        rbEraser.Text = "Eraser";
+        rbEraser.UseVisualStyleBackColor = false;
+        rbEraser.CheckedChanged += ToolRadioButton_CheckedChanged;
+        // 
+        // rbExit
+        // 
+        rbExit.BackColor = System.Drawing.Color.Transparent;
+        rbExit.Font = new System.Drawing.Font("Segoe UI", 9F);
+        rbExit.Location = new System.Drawing.Point(80, 53);
+        rbExit.Name = "rbExit";
+        rbExit.Size = new System.Drawing.Size(68, 21);
+        rbExit.TabIndex = 3;
+        rbExit.TabStop = true;
+        rbExit.Text = "Exit";
+        rbExit.UseVisualStyleBackColor = false;
+        rbExit.CheckedChanged += ToolRadioButton_CheckedChanged;
+        // 
+        // rbSpawn
+        // 
+        rbSpawn.BackColor = System.Drawing.Color.Transparent;
+        rbSpawn.Font = new System.Drawing.Font("Segoe UI", 9F);
+        rbSpawn.Location = new System.Drawing.Point(80, 26);
+        rbSpawn.Name = "rbSpawn";
+        rbSpawn.Size = new System.Drawing.Size(68, 21);
+        rbSpawn.TabIndex = 2;
+        rbSpawn.TabStop = true;
+        rbSpawn.Text = "Spawn";
+        rbSpawn.UseVisualStyleBackColor = false;
+        rbSpawn.CheckedChanged += ToolRadioButton_CheckedChanged;
+        // 
+        // rbHazard
+        // 
+        rbHazard.BackColor = System.Drawing.Color.Transparent;
+        rbHazard.Font = new System.Drawing.Font("Segoe UI", 9F);
+        rbHazard.Location = new System.Drawing.Point(6, 53);
+        rbHazard.Name = "rbHazard";
+        rbHazard.Size = new System.Drawing.Size(68, 21);
+        rbHazard.TabIndex = 1;
+        rbHazard.TabStop = true;
+        rbHazard.Text = "Hazard";
+        rbHazard.UseVisualStyleBackColor = false;
+        rbHazard.CheckedChanged += ToolRadioButton_CheckedChanged;
+        // 
+        // rbWall
+        // 
+        rbWall.BackColor = System.Drawing.Color.Transparent;
+        rbWall.Font = new System.Drawing.Font("Segoe UI", 9F);
+        rbWall.Location = new System.Drawing.Point(6, 26);
+        rbWall.Name = "rbWall";
+        rbWall.Size = new System.Drawing.Size(68, 21);
+        rbWall.TabIndex = 0;
+        rbWall.TabStop = true;
+        rbWall.Text = "Wall";
+        rbWall.UseVisualStyleBackColor = false;
+        rbWall.CheckedChanged += ToolRadioButton_CheckedChanged;
+        // 
+        // pnlLeft
+        // 
+        pnlLeft.Controls.Add(pnlGridHost);
+        pnlLeft.Location = new System.Drawing.Point(3, 3);
+        pnlLeft.Name = "pnlLeft";
+        pnlLeft.Size = new System.Drawing.Size(380, 380);
+        pnlLeft.TabIndex = 0;
         // 
         // pnlGridHost
         // 
         pnlGridHost.Controls.Add(pnlLegend);
         pnlGridHost.Controls.Add(pnlGrid);
-        pnlGridHost.Location = new System.Drawing.Point(4, 7);
+        pnlGridHost.Location = new System.Drawing.Point(0, 0);
         pnlGridHost.Name = "pnlGridHost";
-        pnlGridHost.Size = new System.Drawing.Size(331, 331);
-        pnlGridHost.TabIndex = 43;
+        pnlGridHost.Size = new System.Drawing.Size(380, 380);
+        pnlGridHost.TabIndex = 1;
         pnlGridHost.Resize += pnlGridHost_Resize;
         // 
         // pnlLegend
         // 
-        pnlLegend.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-        pnlLegend.BackColor = System.Drawing.Color.WhiteSmoke;
-        pnlLegend.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
         pnlLegend.Controls.Add(pnlLegendBody);
         pnlLegend.Controls.Add(pnlLegendHeader);
-        pnlLegend.Location = new System.Drawing.Point(0, 236);
+        pnlLegend.Location = new System.Drawing.Point(0, 244);
         pnlLegend.Name = "pnlLegend";
-        pnlLegend.Padding = new System.Windows.Forms.Padding(4);
-        pnlLegend.Size = new System.Drawing.Size(331, 95);
-        pnlLegend.TabIndex = 1;
+        pnlLegend.Size = new System.Drawing.Size(380, 136);
+        pnlLegend.TabIndex = 0;
         // 
         // pnlLegendBody
         // 
         pnlLegendBody.Controls.Add(flpLegendItems);
-        pnlLegendBody.Dock = System.Windows.Forms.DockStyle.Fill;
-        pnlLegendBody.Location = new System.Drawing.Point(4, 4);
+        pnlLegendBody.Location = new System.Drawing.Point(0, 36);
         pnlLegendBody.Name = "pnlLegendBody";
-        pnlLegendBody.Size = new System.Drawing.Size(321, 85);
-        pnlLegendBody.TabIndex = 44;
+        pnlLegendBody.Size = new System.Drawing.Size(380, 100);
+        pnlLegendBody.TabIndex = 1;
         // 
         // flpLegendItems
         // 
-        flpLegendItems.AutoScroll = true;
-        flpLegendItems.Dock = System.Windows.Forms.DockStyle.Fill;
-        flpLegendItems.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-        flpLegendItems.Location = new System.Drawing.Point(0, 0);
+        flpLegendItems.Location = new System.Drawing.Point(3, 283);
         flpLegendItems.Name = "flpLegendItems";
-        flpLegendItems.Size = new System.Drawing.Size(321, 85);
-        flpLegendItems.TabIndex = 44;
-        flpLegendItems.WrapContents = false;
+        flpLegendItems.Size = new System.Drawing.Size(380, 100);
+        flpLegendItems.TabIndex = 0;
         // 
         // pnlLegendHeader
         // 
@@ -558,31 +761,29 @@ partial class Form1
         pnlLegendHeader.Controls.Add(lblLegendLabel);
         pnlLegendHeader.Location = new System.Drawing.Point(0, 0);
         pnlLegendHeader.Name = "pnlLegendHeader";
-        pnlLegendHeader.Size = new System.Drawing.Size(331, 28);
-        pnlLegendHeader.TabIndex = 44;
+        pnlLegendHeader.Size = new System.Drawing.Size(380, 37);
+        pnlLegendHeader.TabIndex = 0;
         // 
         // btnToggleLegend
         // 
-        btnToggleLegend.Dock = System.Windows.Forms.DockStyle.Right;
-        btnToggleLegend.FlatAppearance.BorderSize = 0;
-        btnToggleLegend.FlatStyle = System.Windows.Forms.FlatStyle.System;
-        btnToggleLegend.Location = new System.Drawing.Point(301, 0);
+        btnToggleLegend.BackColor = System.Drawing.Color.Transparent;
+        btnToggleLegend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+        btnToggleLegend.Location = new System.Drawing.Point(343, 0);
         btnToggleLegend.Name = "btnToggleLegend";
-        btnToggleLegend.Size = new System.Drawing.Size(30, 28);
-        btnToggleLegend.TabIndex = 44;
+        btnToggleLegend.Size = new System.Drawing.Size(37, 37);
+        btnToggleLegend.TabIndex = 1;
         btnToggleLegend.Text = "▼";
-        btnToggleLegend.UseVisualStyleBackColor = true;
+        btnToggleLegend.UseVisualStyleBackColor = false;
         btnToggleLegend.Click += btnToggleLegend_Click;
         // 
         // lblLegendLabel
         // 
-        lblLegendLabel.AutoSize = true;
-        lblLegendLabel.Dock = System.Windows.Forms.DockStyle.Left;
-        lblLegendLabel.Font = new System.Drawing.Font("Segoe UI", 12F);
+        lblLegendLabel.BackColor = System.Drawing.Color.Transparent;
+        lblLegendLabel.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
         lblLegendLabel.Location = new System.Drawing.Point(0, 0);
         lblLegendLabel.Name = "lblLegendLabel";
-        lblLegendLabel.Size = new System.Drawing.Size(61, 21);
-        lblLegendLabel.TabIndex = 44;
+        lblLegendLabel.Size = new System.Drawing.Size(121, 37);
+        lblLegendLabel.TabIndex = 0;
         lblLegendLabel.Text = "Legend";
         lblLegendLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
         // 
@@ -590,124 +791,116 @@ partial class Form1
         // 
         pnlGrid.Location = new System.Drawing.Point(0, 0);
         pnlGrid.Name = "pnlGrid";
-        pnlGrid.Size = new System.Drawing.Size(331, 331);
-        pnlGrid.TabIndex = 2;
-        pnlGrid.TabStop = true;
+        pnlGrid.Size = new System.Drawing.Size(380, 380);
+        pnlGrid.TabIndex = 1;
         pnlGrid.Paint += pnlGrid_Paint;
-        pnlGrid.MouseDown += pnlGrid_MouseDown;
         pnlGrid.MouseEnter += pnlGrid_MouseEnter;
+        pnlGrid.MouseDown += pnlGrid_MouseDown;
         pnlGrid.MouseLeave += pnlGrid_MouseLeave;
-        pnlGrid.MouseMove += pnlGrid_MouseMove;
         pnlGrid.MouseUp += pnlGrid_MouseUp;
+        pnlGrid.MouseMove += pnlGrid_MouseMove;
         pnlGrid.MouseWheel += pnlGrid_MouseWheel;
-        // 
-        // rbPan
-        // 
-        rbPan.Location = new System.Drawing.Point(272, 34);
-        rbPan.Name = "rbPan";
-        rbPan.Size = new System.Drawing.Size(71, 26);
-        rbPan.TabIndex = 44;
-        rbPan.TabStop = true;
-        rbPan.Text = "Pan Grid";
-        rbPan.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-        rbPan.UseVisualStyleBackColor = true;
-        // 
-        // gbVisualMode
-        // 
-        gbVisualMode.BackColor = System.Drawing.Color.Transparent;
-        gbVisualMode.Controls.Add(rbStepMode);
-        gbVisualMode.Controls.Add(rbInstantMode);
-        gbVisualMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-        gbVisualMode.Location = new System.Drawing.Point(342, 278);
-        gbVisualMode.Name = "gbVisualMode";
-        gbVisualMode.Size = new System.Drawing.Size(101, 71);
-        gbVisualMode.TabIndex = 45;
-        gbVisualMode.TabStop = false;
-        // 
-        // gbTools
-        // 
-        gbTools.BackColor = System.Drawing.Color.Transparent;
-        gbTools.Controls.Add(rbEraser);
-        gbTools.Controls.Add(rbWall);
-        gbTools.Controls.Add(rbPan);
-        gbTools.Controls.Add(rbExit);
-        gbTools.Controls.Add(rbHazard);
-        gbTools.Controls.Add(rbSpawn);
-        gbTools.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-        gbTools.Location = new System.Drawing.Point(346, 44);
-        gbTools.Name = "gbTools";
-        gbTools.Size = new System.Drawing.Size(397, 69);
-        gbTools.TabIndex = 46;
-        gbTools.TabStop = false;
         // 
         // Form1
         // 
-        AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-        AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+        AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+        AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
         BackColor = System.Drawing.SystemColors.Control;
-        ClientSize = new System.Drawing.Size(701, 523);
-        Controls.Add(gbVisualMode);
-        Controls.Add(pnlGridHost);
-        Controls.Add(nudRiskWeight);
-        Controls.Add(lblRiskWeight);
-        Controls.Add(lblRuntime);
-        Controls.Add(lblNodes);
-        Controls.Add(lblRuntimeLabel);
-        Controls.Add(lblNodesLabel);
-        Controls.Add(lblAvgRisk);
-        Controls.Add(lblAvgWait);
-        Controls.Add(lblCompletion);
-        Controls.Add(lblEvacuated);
-        Controls.Add(lblEvacTime);
-        Controls.Add(lblAvgRiskLabel);
-        Controls.Add(lblAvgWaitLabel);
-        Controls.Add(lblCompletionLabel);
-        Controls.Add(lblEvacuatedLabel);
-        Controls.Add(lblAlgMetrics);
-        Controls.Add(lblSimMetrics);
-        Controls.Add(lblResultsPanel);
-        Controls.Add(lblEvacTimeLabel);
-        Controls.Add(btnResetSim);
-        Controls.Add(btnClearScenario);
-        Controls.Add(btnStep);
-        Controls.Add(btnRun);
-        Controls.Add(lblSpeed);
-        Controls.Add(tbSpeed);
-        Controls.Add(lblSimulationControls);
-        Controls.Add(cboAlgorithm);
-        Controls.Add(lblAlgorithm);
-        Controls.Add(nudDecayRate);
-        Controls.Add(lblDecayRate);
-        Controls.Add(lblSeverity);
-        Controls.Add(nudSeverity);
-        Controls.Add(lblHazardModifier);
-        Controls.Add(lblTools);
-        Controls.Add(lblScenarioEditor);
-        Controls.Add(gbTools);
+        ClientSize = new System.Drawing.Size(784, 561);
+        Controls.Add(pnlMain);
         DoubleBuffered = true;
         Location = new System.Drawing.Point(15, 15);
-        ((System.ComponentModel.ISupportInitialize)nudSeverity).EndInit();
-        ((System.ComponentModel.ISupportInitialize)nudDecayRate).EndInit();
+        pnlMain.ResumeLayout(false);
+        pnlBottom.ResumeLayout(false);
+        gbResults.ResumeLayout(false);
+        gbSimulation.ResumeLayout(false);
+        gbSimulation.PerformLayout();
+        gbVisualModes.ResumeLayout(false);
         ((System.ComponentModel.ISupportInitialize)tbSpeed).EndInit();
         ((System.ComponentModel.ISupportInitialize)nudRiskWeight).EndInit();
+        pnlRight.ResumeLayout(false);
+        gbGridSettings.ResumeLayout(false);
+        ((System.ComponentModel.ISupportInitialize)nudGridHeight).EndInit();
+        ((System.ComponentModel.ISupportInitialize)nudGridWidth).EndInit();
+        gbScenarioActions.ResumeLayout(false);
+        gbHazardModifier.ResumeLayout(false);
+        ((System.ComponentModel.ISupportInitialize)nudDecayRate).EndInit();
+        ((System.ComponentModel.ISupportInitialize)nudSeverity).EndInit();
+        gbTools.ResumeLayout(false);
+        pnlLeft.ResumeLayout(false);
         pnlGridHost.ResumeLayout(false);
         pnlLegend.ResumeLayout(false);
         pnlLegendBody.ResumeLayout(false);
         pnlLegendHeader.ResumeLayout(false);
-        pnlLegendHeader.PerformLayout();
-        gbVisualMode.ResumeLayout(false);
-        gbTools.ResumeLayout(false);
         ResumeLayout(false);
-        PerformLayout();
     }
 
+    private System.Windows.Forms.Label lblNodesLabel;
+    private System.Windows.Forms.Label lblEvacuated;
+    private System.Windows.Forms.Label lblEvacTime;
+    private System.Windows.Forms.Label lblCompletion;
+    private System.Windows.Forms.Label lblAvgWait;
+    private System.Windows.Forms.Label lblAvgRisk;
+
+    private System.Windows.Forms.Label lblNodes;
+
+    private System.Windows.Forms.Label lblRuntimeLabel;
+
+    private System.Windows.Forms.Label lblEvacTimeLabel;
+    private System.Windows.Forms.Label lblEvacuatedLabel;
+    private System.Windows.Forms.Label lblAvgWaitLabel;
+    private System.Windows.Forms.Label lblAvgRiskLabel;
+    private System.Windows.Forms.Label lblCompletionLabel;
+
+    private System.Windows.Forms.Panel pnlBottom;
+    private System.Windows.Forms.GroupBox gbResults;
+    private System.Windows.Forms.Label lblRuntime;
+
+    private System.Windows.Forms.Button btnClearScenario;
+    private System.Windows.Forms.Button button1;
+
+    private System.Windows.Forms.GroupBox gbGridSettings;
+    private System.Windows.Forms.NumericUpDown nudGridHeight;
+    private System.Windows.Forms.Label lblGridHeight;
+    private System.Windows.Forms.NumericUpDown nudGridWidth;
+    private System.Windows.Forms.Label lblGridWidth;
+    private System.Windows.Forms.Button btnResizeGrid;
+    private System.Windows.Forms.GroupBox gbScenarioActions;
+
+    private System.Windows.Forms.GroupBox gbVisualModes;
+    private System.Windows.Forms.RadioButton rbStepMode;
+    private System.Windows.Forms.RadioButton rbInstantMode;
+
+    private System.Windows.Forms.TrackBar tbSpeed;
+
+    private System.Windows.Forms.ComboBox cboAlgorithm;
+    private System.Windows.Forms.Label lblRiskWeight;
+    private System.Windows.Forms.NumericUpDown nudRiskWeight;
+    private System.Windows.Forms.Button btnRun;
+    private System.Windows.Forms.Button btnStep;
+    private System.Windows.Forms.Button btnResetSim;
+    private System.Windows.Forms.Label lblSpeed;
+
+    private System.Windows.Forms.Label lblDecayRate;
+
+    private System.Windows.Forms.GroupBox gbSimulation;
+
+    private System.Windows.Forms.NumericUpDown nudSeverity;
+    private System.Windows.Forms.NumericUpDown nudDecayRate;
+    private System.Windows.Forms.Label lblAlgorithm;
+
     private System.Windows.Forms.GroupBox gbTools;
-
-    private System.Windows.Forms.GroupBox gbVisualMode;
-
+    private System.Windows.Forms.RadioButton rbWall;
+    private System.Windows.Forms.RadioButton rbHazard;
+    private System.Windows.Forms.RadioButton rbExit;
+    private System.Windows.Forms.RadioButton rbSpawn;
     private System.Windows.Forms.RadioButton rbPan;
-    
+    private System.Windows.Forms.RadioButton rbEraser;
+    private System.Windows.Forms.GroupBox gbHazardModifier;
+    private System.Windows.Forms.Label lblSeverity;
+
     private System.Windows.Forms.FlowLayoutPanel flpLegendItems;
+    private System.Windows.Forms.Panel pnlRight;
 
     private System.Windows.Forms.Panel pnlLegendBody;
 
@@ -717,66 +910,12 @@ partial class Form1
     private System.Windows.Forms.Label lblLegendLabel;
 
     private System.Windows.Forms.Panel pnlLegend;
-    private System.Windows.Forms.Panel pnlGridHost;
-
-    private System.Windows.Forms.Label lblRiskWeight;
-    private System.Windows.Forms.NumericUpDown nudRiskWeight;
-
-    private System.Windows.Forms.Label lblRuntime;
-    private System.Windows.Forms.Label lblNodes;
-    private System.Windows.Forms.Label lblRuntimeLabel;
-    private System.Windows.Forms.Label lblNodesLabel;
-
-    private System.Windows.Forms.Label lblEvacuated;
-    private System.Windows.Forms.Label lblCompletion;
-    private System.Windows.Forms.Label lblAvgWait;
-    private System.Windows.Forms.Label lblAvgRisk;
-
-    private System.Windows.Forms.Label lblAvgWaitLabel;
-    private System.Windows.Forms.Label lblAvgRiskLabel;
-    private System.Windows.Forms.Label lblEvacTime;
-
-    private System.Windows.Forms.Label lblResultsPanel;
-    private System.Windows.Forms.Label lblSimMetrics;
-    private System.Windows.Forms.Label lblAlgMetrics;
-    private System.Windows.Forms.Label lblCompletionLabel;
-
-    private System.Windows.Forms.Label lblEvacTimeLabel;
-    private System.Windows.Forms.Label lblEvacuatedLabel;
-
-    private System.Windows.Forms.Button btnClearScenario;
-    private System.Windows.Forms.Button btnResetSim;
-
-    private System.Windows.Forms.Button btnRun;
-
-    private System.Windows.Forms.Label lblSimulationControls;
-    private System.Windows.Forms.RadioButton rbStepMode;
-    private System.Windows.Forms.RadioButton rbInstantMode;
-    private System.Windows.Forms.TrackBar tbSpeed;
-    private System.Windows.Forms.Button btnStep;
-
-    private System.Windows.Forms.Label lblSpeed;
-
-    private System.Windows.Forms.Label lblDecayRate;
-    private System.Windows.Forms.Label lblAlgorithm;
-    private System.Windows.Forms.NumericUpDown nudDecayRate;
-    private System.Windows.Forms.ComboBox cboAlgorithm;
-
-    private System.Windows.Forms.Label lblSeverity;
-
-    private System.Windows.Forms.Label lblHazardModifier;
-    private System.Windows.Forms.NumericUpDown nudSeverity;
-
-    private System.Windows.Forms.RadioButton rbWall;
-    private System.Windows.Forms.RadioButton rbExit;
-    private System.Windows.Forms.RadioButton rbHazard;
-    private System.Windows.Forms.RadioButton rbSpawn;
-    private System.Windows.Forms.RadioButton rbEraser;
-    private System.Windows.Forms.Label lblTools;
-
-    private System.Windows.Forms.Label lblScenarioEditor;
 
     private EvacuationSimulator.UI.DoubleBufferedPanel pnlGrid;
+
+    private System.Windows.Forms.Panel pnlMain;
+    private System.Windows.Forms.Panel pnlGridHost;
+    private System.Windows.Forms.Panel pnlLeft;
 
     #endregion
 }
