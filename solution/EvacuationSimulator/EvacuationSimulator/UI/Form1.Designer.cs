@@ -374,6 +374,7 @@ partial class Form1
         tbSpeed.Orientation = System.Windows.Forms.Orientation.Vertical;
         tbSpeed.Size = new System.Drawing.Size(45, 85);
         tbSpeed.TabIndex = 12;
+        tbSpeed.ValueChanged += tbSpeed_ValueChanged;
         // 
         // lblSpeed
         // 
@@ -494,6 +495,7 @@ partial class Form1
         btnResizeGrid.TabIndex = 14;
         btnResizeGrid.Text = "Resize Grid";
         btnResizeGrid.UseVisualStyleBackColor = true;
+        btnResizeGrid.Click += btnResizeGrid_Click;
         // 
         // nudGridHeight
         // 

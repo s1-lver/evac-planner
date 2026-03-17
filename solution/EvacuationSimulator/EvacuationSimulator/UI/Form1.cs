@@ -1,7 +1,9 @@
-﻿using EvacuationSimulator.Algorithms;
+﻿using System.Windows.Forms.VisualStyles;
+using EvacuationSimulator.Algorithms;
 using EvacuationSimulator.Data;
 using Point = EvacuationSimulator.Data.Point;
 using EvacuationSimulator.Core;
+using ContentAlignment = System.Drawing.ContentAlignment;
 using Timer = System.Windows.Forms.Timer;
 
 
@@ -15,6 +17,7 @@ public partial class Form1 : Form
     
     private Simulation? simulation;
     private bool simulationInitialised;
+    private SimulationRunState runState;
 
     private bool legendCollapsed = false;
 
@@ -34,10 +37,10 @@ public partial class Form1 : Form
     private int viewportOffsetX = 0;
     private int viewportOffsetY = 0;
     
-    private int viewportLeftPadding = 40;
-    private int viewportRightPadding = 40;
-    private int viewportTopPadding = 40;
-    private int viewportBottomPadding = 40;
+    private int viewportLeftPadding = 60;
+    private int viewportRightPadding = 60;
+    private int viewportTopPadding = 60;
+    private int viewportBottomPadding = 60;
     
     private bool isPanningGrid = false;
     private System.Drawing.Point panStartMouseScreen;
@@ -64,6 +67,8 @@ public partial class Form1 : Form
         SetupLegend();
         UpdateSelectedTool();
         UpdateMetricLabels();
+        
+        SetRunState(SimulationRunState.Stopped);
 
         uiInitialised = true;
     }
@@ -296,6 +301,7 @@ public partial class Form1 : Form
         simulation = null;
         simulationInitialised = false;
         UpdateMetricLabels();
+        SetRunState(SimulationRunState.Stopped);
         pnlGrid.Invalidate();
     }
 
@@ -482,6 +488,35 @@ public partial class Form1 : Form
         pnlGrid.Invalidate();
     }
 
+    private void btnResizeGrid_Click(object sender, EventArgs e)
+    {
+        int newHeight = (int)nudGridHeight.Value;
+        int newWidth = (int)nudGridWidth.Value;
+        int oldHeight = scenarioManager.CurrentGrid.Height;
+        int oldWidth = scenarioManager.CurrentGrid.Width;
+
+        bool isShrinking = newHeight < oldHeight || newWidth < oldWidth;
+
+        if (isShrinking)
+        {
+            DialogResult confirm = MessageBox.Show(
+                "Shrinking the grid may remove entities outside of the new bounds. Continue?",
+                "Confirm Grid Resize",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+                );
+
+            if (confirm != DialogResult.Yes)
+                return;
+        }
+        
+        scenarioManager.ResizeGrid(newWidth, newHeight);
+        
+        InvalidateSimulationState();
+        ClampViewport();
+        pnlGrid.Invalidate();
+    }
+
     private void pnlGrid_MouseMove(object sender, MouseEventArgs e)
     {
         if (gridInteractionMode == GridInteractionMode.Pan)
@@ -613,49 +648,87 @@ public partial class Form1 : Form
         viewportOffsetY = Math.Max(minY, Math.Min(viewportOffsetY, maxY));
     }
 
+    private void SetRunState(SimulationRunState newState)
+    {
+        runState = newState;
+
+        btnRun.Text = runState switch
+        {
+            SimulationRunState.Paused => "Resume",
+            SimulationRunState.Running => "Pause",
+            _ => "Run"
+        };
+    }
+    
     private void btnRun_Click(object sender, EventArgs e)
     {
-        CreateFreshSimulation();
-
         if (rbInstantMode.Checked)
         {
+            CreateFreshSimulation();
             simulation!.RunSimulation();
             UpdateMetricLabels();
             pnlGrid.Invalidate();
+            SetRunState(SimulationRunState.Running);
+            return;
         }
-        else
+
+        switch (runState)
         {
-            simulationTimer.Start();
+            case SimulationRunState.Stopped:
+                if (!simulationInitialised || simulation is null || simulation.CheckEndCondition())
+                    CreateFreshSimulation();
+
+                simulationTimer.Start();
+                SetRunState(SimulationRunState.Running);
+                break;
+            
+            case SimulationRunState.Running:
+                simulationTimer.Stop();
+                SetRunState(SimulationRunState.Paused);
+                break;
+            
+            case SimulationRunState.Paused:
+                simulationTimer.Start();
+                SetRunState(SimulationRunState.Running);
+                break;
         }
     }
 
     private void btnStep_Click(object sender, EventArgs e)
     {
+        simulationTimer.Stop();
+        
         if (!simulationInitialised)
             CreateFreshSimulation();
 
         if (simulation is null || simulation.CheckEndCondition())
         {
-            simulationTimer.Stop();
             UpdateMetricLabels();
             pnlGrid.Invalidate();
+            SetRunState(SimulationRunState.Stopped);
             return;
         }
 
         simulation.RunTick();
         UpdateMetricLabels();
         pnlGrid.Invalidate();
+        
+        SetRunState(SimulationRunState.Stopped);
     }
 
     private void btnResetSim_Click(object sender, EventArgs e)
     {
+        simulationTimer.Stop();
         CreateFreshSimulation();
+        SetRunState(SimulationRunState.Stopped);
     }
 
     private void btnClearScenario_Click(object sender, EventArgs e)
     {
+        simulationTimer.Stop();
         scenarioManager.ClearScenario();
         InvalidateSimulationState();
+        SetRunState(SimulationRunState.Stopped);
     }
 
     private void SimulationTimer_Tick(object? sender, EventArgs e)
@@ -664,6 +737,7 @@ public partial class Form1 : Form
         {
             simulationTimer.Stop();
             UpdateMetricLabels();
+            SetRunState(SimulationRunState.Stopped);
             pnlGrid.Invalidate();
             return;
         }
