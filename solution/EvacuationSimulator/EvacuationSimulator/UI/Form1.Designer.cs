@@ -69,7 +69,7 @@ partial class Form1
         nudGridWidth = new System.Windows.Forms.NumericUpDown();
         lblGridWidth = new System.Windows.Forms.Label();
         gbScenarioActions = new System.Windows.Forms.GroupBox();
-        button1 = new System.Windows.Forms.Button();
+        btnLoadScenario = new System.Windows.Forms.Button();
         btnClearScenario = new System.Windows.Forms.Button();
         gbHazardModifier = new System.Windows.Forms.GroupBox();
         nudDecayRate = new System.Windows.Forms.NumericUpDown();
@@ -537,7 +537,7 @@ partial class Form1
         // 
         // gbScenarioActions
         // 
-        gbScenarioActions.Controls.Add(button1);
+        gbScenarioActions.Controls.Add(btnLoadScenario);
         gbScenarioActions.Controls.Add(btnClearScenario);
         gbScenarioActions.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
         gbScenarioActions.Location = new System.Drawing.Point(197, 254);
@@ -547,15 +547,15 @@ partial class Form1
         gbScenarioActions.TabStop = false;
         gbScenarioActions.Text = "Scenario Actions";
         // 
-        // button1
+        // btnLoadScenario
         // 
-        button1.Font = new System.Drawing.Font("Segoe UI", 9F);
-        button1.Location = new System.Drawing.Point(6, 58);
-        button1.Name = "button1";
-        button1.Size = new System.Drawing.Size(156, 26);
-        button1.TabIndex = 16;
-        button1.Text = "Load Example Scenario";
-        button1.UseVisualStyleBackColor = true;
+        btnLoadScenario.Font = new System.Drawing.Font("Segoe UI", 9F);
+        btnLoadScenario.Location = new System.Drawing.Point(6, 58);
+        btnLoadScenario.Name = "btnLoadScenario";
+        btnLoadScenario.Size = new System.Drawing.Size(156, 26);
+        btnLoadScenario.TabIndex = 16;
+        btnLoadScenario.Text = "Load Example Scenario";
+        btnLoadScenario.UseVisualStyleBackColor = true;
         // 
         // btnClearScenario
         // 
@@ -859,7 +859,7 @@ partial class Form1
     private System.Windows.Forms.Label lblRuntime;
 
     private System.Windows.Forms.Button btnClearScenario;
-    private System.Windows.Forms.Button button1;
+    private System.Windows.Forms.Button btnLoadScenario;
 
     private System.Windows.Forms.GroupBox gbGridSettings;
     private System.Windows.Forms.NumericUpDown nudGridHeight;

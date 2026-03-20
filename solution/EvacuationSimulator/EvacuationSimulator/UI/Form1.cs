@@ -118,9 +118,7 @@ public partial class Form1 : Form
     
     private void SetupGridViewport()
     {
-        pnlGrid.Parent = pnlGridHost;
         pnlGrid.Dock = DockStyle.Fill;
-        
         gridRenderer.SetCellSize(DefaultEditCellSize);
         ClampViewport();
         pnlGrid.Invalidate();
