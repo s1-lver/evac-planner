@@ -9,11 +9,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Compile Update="UI\Form1.cs">
+      <Compile Update="UI\ProgramForm.cs">
         <SubType>Form</SubType>
       </Compile>
-      <Compile Update="UI\Form1.Designer.cs">
-        <DependentUpon>Form1.cs</DependentUpon>
+      <Compile Update="UI\ProgramForm.Designer.cs">
+        <DependentUpon>ProgramForm.cs</DependentUpon>
+      </Compile>
+      <Compile Update="UI\ExampleScenarioPickerForm.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="UI\ExampleScenarioPickerForm.Designer.cs">
+        <DependentUpon>ExampleScenarioPickerForm.cs</DependentUpon>
       </Compile>
     </ItemGroup>
 

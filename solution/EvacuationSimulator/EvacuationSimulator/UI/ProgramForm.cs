@@ -9,7 +9,7 @@ using Timer = System.Windows.Forms.Timer;
 
 namespace EvacuationSimulator.UI;
 
-public partial class Form1 : Form
+public partial class ProgramForm : Form
 {
     private readonly ScenarioManager scenarioManager;
     private readonly GridRenderer gridRenderer;
@@ -52,7 +52,7 @@ public partial class Form1 : Form
     private bool showHoverTooltip = false;
 
     private bool uiInitialised = false;
-    public Form1()
+    public ProgramForm()
     {
         InitializeComponent();
 
@@ -65,6 +65,7 @@ public partial class Form1 : Form
         SetupUi();
         SetupGridViewport();
         SetupLegend();
+        PositionLegendOverlay();
         UpdateSelectedTool();
         UpdateMetricLabels();
         
@@ -754,6 +755,52 @@ public partial class Form1 : Form
     private void tbSpeed_ValueChanged(object sender, EventArgs e)
     {
         UpdateTimerInterval();
+    }
+
+    private void btnLoadScenario_Click(object sender, EventArgs e)
+    {
+        string scenarioFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ExampleScenarios");
+        List<string> files = scenarioManager.GetExampleScenarioFiles(scenarioFolder);
+
+        if (files.Count == 0)
+        {
+            MessageBox.Show(
+                "No example scenario files were found.",
+                "Load Example Scenario",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+            return;
+        }
+
+        List<ScenarioListItem> scenarios = files
+            .Select(path => new ScenarioListItem(path, Path.GetFileNameWithoutExtension(path).Replace('_', ' ')))
+            .ToList();
+        
+        using ExampleScenarioPickerForm picker = new ExampleScenarioPickerForm(scenarios);
+
+        if (picker.ShowDialog(this) != DialogResult.OK || string.IsNullOrWhiteSpace(picker.SelectedScenarioPath))
+            return;
+
+        try
+        {
+            scenarioManager.LoadExampleScenarioFromFile(picker.SelectedScenarioPath);
+
+            nudGridWidth.Value = scenarioManager.CurrentGrid.Width;
+            nudGridHeight.Value = scenarioManager.CurrentGrid.Height;
+
+            InvalidateSimulationState();
+            ClampViewport();
+            PositionLegendOverlay();
+            pnlGrid.Invalidate();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(
+                $"Failed to load scenario.\n\n{ex.Message}",
+                "Load Example Scenario",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+        }
     }
     
 }

@@ -2,7 +2,7 @@
 
 namespace EvacuationSimulator.UI;
 
-partial class Form1
+partial class ProgramForm
 {
     /// <summary>
     /// Required designer variable.
@@ -556,6 +556,7 @@ partial class Form1
         btnLoadScenario.TabIndex = 16;
         btnLoadScenario.Text = "Load Example Scenario";
         btnLoadScenario.UseVisualStyleBackColor = true;
+        btnLoadScenario.Click += btnLoadScenario_Click;
         // 
         // btnClearScenario
         // 
@@ -803,10 +804,12 @@ partial class Form1
         pnlGrid.MouseMove += pnlGrid_MouseMove;
         pnlGrid.MouseWheel += pnlGrid_MouseWheel;
         // 
-        // Form1
+        // ProgramForm
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+        MinimizeBox = true;
+        MaximizeBox = false;
         BackColor = System.Drawing.SystemColors.Control;
         ClientSize = new System.Drawing.Size(784, 561);
         Controls.Add(pnlMain);

@@ -9,7 +9,7 @@ static class Program
     static void Main()
     {
         ApplicationConfiguration.Initialize();
-        Application.Run(new Form1());
+        Application.Run(new ProgramForm());
         //CoreTests.GridTests.TestGrid();
         //CoreTests.HazardTests.TestHazard();
         //CoreTests.SimulationTests.TestSimulation();

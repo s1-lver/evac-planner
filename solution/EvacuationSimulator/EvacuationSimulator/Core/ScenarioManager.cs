@@ -5,6 +5,7 @@ namespace EvacuationSimulator.Core;
 
 public class ScenarioManager
 {
+    private readonly ExampleScenarioLoader exampleScenarioLoader;
     public Grid CurrentGrid { get; private set; }
     public List<Hazard> Hazards { get; }
     public EditorToolType SelectedTool { get; set; }
@@ -17,6 +18,36 @@ public class ScenarioManager
         Hazards = new List<Hazard>();
         SelectedTool = EditorToolType.WallTool;
         nextHazardId = 1;
+
+        exampleScenarioLoader = new ExampleScenarioLoader();
+    }
+
+    public List<string> GetExampleScenarioFiles(string folderPath)
+    {
+        return exampleScenarioLoader.GetScenarioFiles(folderPath);
+    }
+
+    public bool LoadExampleScenarioFromFile(string filePath)
+    {
+        ExampleScenario scenario = exampleScenarioLoader.LoadFromFile(filePath);
+
+        CurrentGrid = new Grid(scenario.Width, scenario.Height);
+        Hazards.Clear();
+        nextHazardId = 1;
+        
+        foreach (Point wall in scenario.Walls)
+            PlaceWall(wall);
+        
+        foreach (Point spawn in scenario.Spawns)
+            PlaceSpawn(spawn);
+        
+        foreach (Point exit in scenario.Exits)
+            PlaceExit(exit);
+        
+        foreach (ExampleHazard hazard in scenario.Hazards)
+            PlaceHazard(hazard.Position, hazard.Severity, hazard.DecayRate);
+
+        return true;
     }
 
     public void PlaceWall(int x, int y)
@@ -123,11 +154,6 @@ public class ScenarioManager
     public Hazard? FindHazardAt(Point position)
     {
         return FindHazardAt(position.X, position.Y);
-    }
-
-    public void LoadExampleScenario(int id)
-    {
-        // not implemented
     }
 
     private void ReplaceCell(int x, int y, CellType newType)
