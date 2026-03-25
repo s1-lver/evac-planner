@@ -23,6 +23,11 @@ public partial class ExampleScenarioPickerForm : Form
 
         txtSearch.TextChanged += txtSearch_TextChanged;
 
+        flpScenarioCards.AutoScroll = true;
+        flpScenarioCards.FlowDirection = FlowDirection.TopDown;
+        flpScenarioCards.WrapContents = false;
+        flpScenarioCards.AutoSize = false;
+
         AcceptButton = btnLoad;
         CancelButton = btnCancel;
 
@@ -64,7 +69,7 @@ public partial class ExampleScenarioPickerForm : Form
         int cWidth = flpScenarioCards.Width * 44 / 49;
         Panel card = new Panel
         {
-            Width = flpScenarioCards.Width,
+            Width = cWidth,
             Height = 72,
             BackColor = Color.White,
             BorderStyle = BorderStyle.FixedSingle,

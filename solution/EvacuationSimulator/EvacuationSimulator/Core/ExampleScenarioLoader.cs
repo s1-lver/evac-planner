@@ -131,9 +131,16 @@ public class ExampleScenarioLoader
         if (!Directory.Exists(folderPath))
             return new List<string>();
 
+        if (Directory.Exists(folderPath + "\\TrainingEvaluation"))
+            return Directory.GetFiles(folderPath, "*.evac")
+                .Concat(
+                    Directory.GetFiles(folderPath + "\\TrainingEvaluation", "*.evac"))
+                .OrderBy(path => path)
+                .ToList();
+        
         return Directory.GetFiles(folderPath, "*.evac")
             .OrderBy(path => path)
-            .ToList();
+            .ToList(); 
     }
 
     private Dictionary<string, (double Severity, double DecayRate)> ParseHazardDefinitions(List<string> hazardLines)

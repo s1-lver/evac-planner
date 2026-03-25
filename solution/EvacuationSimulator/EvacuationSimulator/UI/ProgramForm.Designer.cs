@@ -33,6 +33,11 @@ partial class ProgramForm
     {
         pnlMain = new System.Windows.Forms.Panel();
         pnlBottom = new System.Windows.Forms.Panel();
+        gbRecommendation = new System.Windows.Forms.GroupBox();
+        btnGenerateTrainingData = new System.Windows.Forms.Button();
+        lblRecommendedAlgorithm = new System.Windows.Forms.Label();
+        lblRecAlgTitle = new System.Windows.Forms.Label();
+        btnRecommend = new System.Windows.Forms.Button();
         gbResults = new System.Windows.Forms.GroupBox();
         lblRuntime = new System.Windows.Forms.Label();
         lblNodes = new System.Windows.Forms.Label();
@@ -48,6 +53,13 @@ partial class ProgramForm
         lblEvacuatedLabel = new System.Windows.Forms.Label();
         lblEvacTime = new System.Windows.Forms.Label();
         lblEvacTimeLabel = new System.Windows.Forms.Label();
+        pnlRight = new System.Windows.Forms.Panel();
+        gbGridSettings = new System.Windows.Forms.GroupBox();
+        btnResizeGrid = new System.Windows.Forms.Button();
+        nudGridHeight = new System.Windows.Forms.NumericUpDown();
+        lblGridHeight = new System.Windows.Forms.Label();
+        nudGridWidth = new System.Windows.Forms.NumericUpDown();
+        lblGridWidth = new System.Windows.Forms.Label();
         gbSimulation = new System.Windows.Forms.GroupBox();
         gbVisualModes = new System.Windows.Forms.GroupBox();
         rbInstantMode = new System.Windows.Forms.RadioButton();
@@ -61,13 +73,6 @@ partial class ProgramForm
         lblRiskWeight = new System.Windows.Forms.Label();
         cboAlgorithm = new System.Windows.Forms.ComboBox();
         lblAlgorithm = new System.Windows.Forms.Label();
-        pnlRight = new System.Windows.Forms.Panel();
-        gbGridSettings = new System.Windows.Forms.GroupBox();
-        btnResizeGrid = new System.Windows.Forms.Button();
-        nudGridHeight = new System.Windows.Forms.NumericUpDown();
-        lblGridHeight = new System.Windows.Forms.Label();
-        nudGridWidth = new System.Windows.Forms.NumericUpDown();
-        lblGridWidth = new System.Windows.Forms.Label();
         gbScenarioActions = new System.Windows.Forms.GroupBox();
         btnLoadScenario = new System.Windows.Forms.Button();
         btnClearScenario = new System.Windows.Forms.Button();
@@ -94,15 +99,16 @@ partial class ProgramForm
         pnlGrid = new EvacuationSimulator.UI.DoubleBufferedPanel();
         pnlMain.SuspendLayout();
         pnlBottom.SuspendLayout();
+        gbRecommendation.SuspendLayout();
         gbResults.SuspendLayout();
-        gbSimulation.SuspendLayout();
-        gbVisualModes.SuspendLayout();
-        ((System.ComponentModel.ISupportInitialize)tbSpeed).BeginInit();
-        ((System.ComponentModel.ISupportInitialize)nudRiskWeight).BeginInit();
         pnlRight.SuspendLayout();
         gbGridSettings.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)nudGridHeight).BeginInit();
         ((System.ComponentModel.ISupportInitialize)nudGridWidth).BeginInit();
+        gbSimulation.SuspendLayout();
+        gbVisualModes.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)tbSpeed).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)nudRiskWeight).BeginInit();
         gbScenarioActions.SuspendLayout();
         gbHazardModifier.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)nudDecayRate).BeginInit();
@@ -127,11 +133,70 @@ partial class ProgramForm
         // 
         // pnlBottom
         // 
+        pnlBottom.Controls.Add(gbRecommendation);
         pnlBottom.Controls.Add(gbResults);
         pnlBottom.Location = new System.Drawing.Point(3, 389);
         pnlBottom.Name = "pnlBottom";
         pnlBottom.Size = new System.Drawing.Size(754, 145);
         pnlBottom.TabIndex = 3;
+        // 
+        // gbRecommendation
+        // 
+        gbRecommendation.Controls.Add(btnGenerateTrainingData);
+        gbRecommendation.Controls.Add(lblRecommendedAlgorithm);
+        gbRecommendation.Controls.Add(lblRecAlgTitle);
+        gbRecommendation.Controls.Add(btnRecommend);
+        gbRecommendation.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+        gbRecommendation.Location = new System.Drawing.Point(390, 0);
+        gbRecommendation.Name = "gbRecommendation";
+        gbRecommendation.Size = new System.Drawing.Size(361, 145);
+        gbRecommendation.TabIndex = 1;
+        gbRecommendation.TabStop = false;
+        gbRecommendation.Text = "Recommendation Engine";
+        // 
+        // btnGenerateTrainingData
+        // 
+        btnGenerateTrainingData.Font = new System.Drawing.Font("Segoe UI", 9F);
+        btnGenerateTrainingData.Location = new System.Drawing.Point(113, 112);
+        btnGenerateTrainingData.Name = "btnGenerateTrainingData";
+        btnGenerateTrainingData.Size = new System.Drawing.Size(148, 26);
+        btnGenerateTrainingData.TabIndex = 18;
+        btnGenerateTrainingData.Text = "Generate Training Data";
+        btnGenerateTrainingData.UseVisualStyleBackColor = true;
+        btnGenerateTrainingData.Click += btnGenerateTrainingData_Click;
+        // 
+        // lblRecommendedAlgorithm
+        // 
+        lblRecommendedAlgorithm.BackColor = System.Drawing.Color.Transparent;
+        lblRecommendedAlgorithm.Font = new System.Drawing.Font("Segoe UI", 9F);
+        lblRecommendedAlgorithm.Location = new System.Drawing.Point(102, 66);
+        lblRecommendedAlgorithm.Name = "lblRecommendedAlgorithm";
+        lblRecommendedAlgorithm.Size = new System.Drawing.Size(159, 23);
+        lblRecommendedAlgorithm.TabIndex = 17;
+        lblRecommendedAlgorithm.Text = "...";
+        lblRecommendedAlgorithm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+        // 
+        // lblRecAlgTitle
+        // 
+        lblRecAlgTitle.BackColor = System.Drawing.Color.Transparent;
+        lblRecAlgTitle.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+        lblRecAlgTitle.Location = new System.Drawing.Point(102, 46);
+        lblRecAlgTitle.Name = "lblRecAlgTitle";
+        lblRecAlgTitle.Size = new System.Drawing.Size(159, 23);
+        lblRecAlgTitle.TabIndex = 16;
+        lblRecAlgTitle.Text = "Recommended Algorithm";
+        lblRecAlgTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+        // 
+        // btnRecommend
+        // 
+        btnRecommend.Font = new System.Drawing.Font("Segoe UI", 9F);
+        btnRecommend.Location = new System.Drawing.Point(6, 112);
+        btnRecommend.Name = "btnRecommend";
+        btnRecommend.Size = new System.Drawing.Size(101, 26);
+        btnRecommend.TabIndex = 15;
+        btnRecommend.Text = "Recommend";
+        btnRecommend.UseVisualStyleBackColor = true;
+        btnRecommend.Click += btnRecommend_Click;
         // 
         // gbResults
         // 
@@ -311,6 +376,82 @@ partial class ProgramForm
         lblEvacTimeLabel.Text = "Evacuation Time:";
         lblEvacTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
         // 
+        // pnlRight
+        // 
+        pnlRight.Controls.Add(gbGridSettings);
+        pnlRight.Controls.Add(gbSimulation);
+        pnlRight.Controls.Add(gbScenarioActions);
+        pnlRight.Controls.Add(gbHazardModifier);
+        pnlRight.Controls.Add(gbTools);
+        pnlRight.Location = new System.Drawing.Point(389, 3);
+        pnlRight.Name = "pnlRight";
+        pnlRight.Size = new System.Drawing.Size(368, 380);
+        pnlRight.TabIndex = 1;
+        // 
+        // gbGridSettings
+        // 
+        gbGridSettings.Controls.Add(btnResizeGrid);
+        gbGridSettings.Controls.Add(nudGridHeight);
+        gbGridSettings.Controls.Add(lblGridHeight);
+        gbGridSettings.Controls.Add(nudGridWidth);
+        gbGridSettings.Controls.Add(lblGridWidth);
+        gbGridSettings.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+        gbGridSettings.Location = new System.Drawing.Point(0, 254);
+        gbGridSettings.Name = "gbGridSettings";
+        gbGridSettings.Size = new System.Drawing.Size(191, 126);
+        gbGridSettings.TabIndex = 2;
+        gbGridSettings.TabStop = false;
+        gbGridSettings.Text = "Grid Settings";
+        // 
+        // btnResizeGrid
+        // 
+        btnResizeGrid.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+        btnResizeGrid.Location = new System.Drawing.Point(3, 88);
+        btnResizeGrid.Name = "btnResizeGrid";
+        btnResizeGrid.Size = new System.Drawing.Size(182, 26);
+        btnResizeGrid.TabIndex = 14;
+        btnResizeGrid.Text = "Resize Grid";
+        btnResizeGrid.UseVisualStyleBackColor = true;
+        btnResizeGrid.Click += btnResizeGrid_Click;
+        // 
+        // nudGridHeight
+        // 
+        nudGridHeight.Font = new System.Drawing.Font("Segoe UI", 9F);
+        nudGridHeight.Location = new System.Drawing.Point(88, 53);
+        nudGridHeight.Name = "nudGridHeight";
+        nudGridHeight.Size = new System.Drawing.Size(97, 23);
+        nudGridHeight.TabIndex = 7;
+        // 
+        // lblGridHeight
+        // 
+        lblGridHeight.BackColor = System.Drawing.Color.Transparent;
+        lblGridHeight.Font = new System.Drawing.Font("Segoe UI", 9F);
+        lblGridHeight.Location = new System.Drawing.Point(3, 52);
+        lblGridHeight.Name = "lblGridHeight";
+        lblGridHeight.Size = new System.Drawing.Size(79, 23);
+        lblGridHeight.TabIndex = 6;
+        lblGridHeight.Text = "Height";
+        lblGridHeight.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+        // 
+        // nudGridWidth
+        // 
+        nudGridWidth.Font = new System.Drawing.Font("Segoe UI", 9F);
+        nudGridWidth.Location = new System.Drawing.Point(88, 26);
+        nudGridWidth.Name = "nudGridWidth";
+        nudGridWidth.Size = new System.Drawing.Size(97, 23);
+        nudGridWidth.TabIndex = 5;
+        // 
+        // lblGridWidth
+        // 
+        lblGridWidth.BackColor = System.Drawing.Color.Transparent;
+        lblGridWidth.Font = new System.Drawing.Font("Segoe UI", 9F);
+        lblGridWidth.Location = new System.Drawing.Point(3, 25);
+        lblGridWidth.Name = "lblGridWidth";
+        lblGridWidth.Size = new System.Drawing.Size(79, 23);
+        lblGridWidth.TabIndex = 4;
+        lblGridWidth.Text = "Width";
+        lblGridWidth.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+        // 
         // gbSimulation
         // 
         gbSimulation.Controls.Add(gbVisualModes);
@@ -458,82 +599,6 @@ partial class ProgramForm
         lblAlgorithm.TabIndex = 4;
         lblAlgorithm.Text = "Algorithm";
         lblAlgorithm.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-        // 
-        // pnlRight
-        // 
-        pnlRight.Controls.Add(gbGridSettings);
-        pnlRight.Controls.Add(gbSimulation);
-        pnlRight.Controls.Add(gbScenarioActions);
-        pnlRight.Controls.Add(gbHazardModifier);
-        pnlRight.Controls.Add(gbTools);
-        pnlRight.Location = new System.Drawing.Point(389, 3);
-        pnlRight.Name = "pnlRight";
-        pnlRight.Size = new System.Drawing.Size(368, 380);
-        pnlRight.TabIndex = 1;
-        // 
-        // gbGridSettings
-        // 
-        gbGridSettings.Controls.Add(btnResizeGrid);
-        gbGridSettings.Controls.Add(nudGridHeight);
-        gbGridSettings.Controls.Add(lblGridHeight);
-        gbGridSettings.Controls.Add(nudGridWidth);
-        gbGridSettings.Controls.Add(lblGridWidth);
-        gbGridSettings.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-        gbGridSettings.Location = new System.Drawing.Point(0, 254);
-        gbGridSettings.Name = "gbGridSettings";
-        gbGridSettings.Size = new System.Drawing.Size(191, 126);
-        gbGridSettings.TabIndex = 2;
-        gbGridSettings.TabStop = false;
-        gbGridSettings.Text = "Grid Settings";
-        // 
-        // btnResizeGrid
-        // 
-        btnResizeGrid.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-        btnResizeGrid.Location = new System.Drawing.Point(3, 88);
-        btnResizeGrid.Name = "btnResizeGrid";
-        btnResizeGrid.Size = new System.Drawing.Size(182, 26);
-        btnResizeGrid.TabIndex = 14;
-        btnResizeGrid.Text = "Resize Grid";
-        btnResizeGrid.UseVisualStyleBackColor = true;
-        btnResizeGrid.Click += btnResizeGrid_Click;
-        // 
-        // nudGridHeight
-        // 
-        nudGridHeight.Font = new System.Drawing.Font("Segoe UI", 9F);
-        nudGridHeight.Location = new System.Drawing.Point(88, 53);
-        nudGridHeight.Name = "nudGridHeight";
-        nudGridHeight.Size = new System.Drawing.Size(97, 23);
-        nudGridHeight.TabIndex = 7;
-        // 
-        // lblGridHeight
-        // 
-        lblGridHeight.BackColor = System.Drawing.Color.Transparent;
-        lblGridHeight.Font = new System.Drawing.Font("Segoe UI", 9F);
-        lblGridHeight.Location = new System.Drawing.Point(3, 52);
-        lblGridHeight.Name = "lblGridHeight";
-        lblGridHeight.Size = new System.Drawing.Size(79, 23);
-        lblGridHeight.TabIndex = 6;
-        lblGridHeight.Text = "Height";
-        lblGridHeight.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-        // 
-        // nudGridWidth
-        // 
-        nudGridWidth.Font = new System.Drawing.Font("Segoe UI", 9F);
-        nudGridWidth.Location = new System.Drawing.Point(88, 26);
-        nudGridWidth.Name = "nudGridWidth";
-        nudGridWidth.Size = new System.Drawing.Size(97, 23);
-        nudGridWidth.TabIndex = 5;
-        // 
-        // lblGridWidth
-        // 
-        lblGridWidth.BackColor = System.Drawing.Color.Transparent;
-        lblGridWidth.Font = new System.Drawing.Font("Segoe UI", 9F);
-        lblGridWidth.Location = new System.Drawing.Point(3, 25);
-        lblGridWidth.Name = "lblGridWidth";
-        lblGridWidth.Size = new System.Drawing.Size(79, 23);
-        lblGridWidth.TabIndex = 4;
-        lblGridWidth.Text = "Width";
-        lblGridWidth.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
         // 
         // gbScenarioActions
         // 
@@ -797,36 +862,36 @@ partial class ProgramForm
         pnlGrid.Size = new System.Drawing.Size(380, 380);
         pnlGrid.TabIndex = 1;
         pnlGrid.Paint += pnlGrid_Paint;
-        pnlGrid.MouseEnter += pnlGrid_MouseEnter;
         pnlGrid.MouseDown += pnlGrid_MouseDown;
+        pnlGrid.MouseEnter += pnlGrid_MouseEnter;
         pnlGrid.MouseLeave += pnlGrid_MouseLeave;
-        pnlGrid.MouseUp += pnlGrid_MouseUp;
         pnlGrid.MouseMove += pnlGrid_MouseMove;
+        pnlGrid.MouseUp += pnlGrid_MouseUp;
         pnlGrid.MouseWheel += pnlGrid_MouseWheel;
         // 
         // ProgramForm
         // 
         AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
         AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-        MinimizeBox = true;
-        MaximizeBox = false;
         BackColor = System.Drawing.SystemColors.Control;
         ClientSize = new System.Drawing.Size(784, 561);
         Controls.Add(pnlMain);
         DoubleBuffered = true;
         Location = new System.Drawing.Point(15, 15);
+        MaximizeBox = false;
         pnlMain.ResumeLayout(false);
         pnlBottom.ResumeLayout(false);
+        gbRecommendation.ResumeLayout(false);
         gbResults.ResumeLayout(false);
+        pnlRight.ResumeLayout(false);
+        gbGridSettings.ResumeLayout(false);
+        ((System.ComponentModel.ISupportInitialize)nudGridHeight).EndInit();
+        ((System.ComponentModel.ISupportInitialize)nudGridWidth).EndInit();
         gbSimulation.ResumeLayout(false);
         gbSimulation.PerformLayout();
         gbVisualModes.ResumeLayout(false);
         ((System.ComponentModel.ISupportInitialize)tbSpeed).EndInit();
         ((System.ComponentModel.ISupportInitialize)nudRiskWeight).EndInit();
-        pnlRight.ResumeLayout(false);
-        gbGridSettings.ResumeLayout(false);
-        ((System.ComponentModel.ISupportInitialize)nudGridHeight).EndInit();
-        ((System.ComponentModel.ISupportInitialize)nudGridWidth).EndInit();
         gbScenarioActions.ResumeLayout(false);
         gbHazardModifier.ResumeLayout(false);
         ((System.ComponentModel.ISupportInitialize)nudDecayRate).EndInit();
@@ -839,6 +904,15 @@ partial class ProgramForm
         pnlLegendHeader.ResumeLayout(false);
         ResumeLayout(false);
     }
+
+    private System.Windows.Forms.Button btnGenerateTrainingData;
+
+    private System.Windows.Forms.Label lblRecommendedAlgorithm;
+
+    private System.Windows.Forms.Button btnRecommend;
+    private System.Windows.Forms.Label lblRecAlgTitle;
+
+    private System.Windows.Forms.GroupBox gbRecommendation;
 
     private System.Windows.Forms.Label lblNodesLabel;
     private System.Windows.Forms.Label lblEvacuated;

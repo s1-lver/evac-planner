@@ -13,6 +13,9 @@ public partial class ProgramForm : Form
 {
     private readonly ScenarioManager scenarioManager;
     private readonly GridRenderer gridRenderer;
+    private RecommendationEngine? recommendationEngine;
+    private readonly TrainingDatasetGenerator trainingDatasetGenerator = new();
+    private readonly TrainingCaseCsvService trainingCaseCsvService = new();
     private readonly Timer simulationTimer;
     
     private Simulation? simulation;
@@ -74,6 +77,25 @@ public partial class ProgramForm : Form
         uiInitialised = true;
     }
 
+    private void TryLoadTrainingData()
+    {
+        string csvPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TrainingData", "training_cases.csv");
+
+        if (!File.Exists(csvPath))
+            return;
+
+        try
+        {
+            List<TrainingCase> trainingCases = trainingCaseCsvService.Load(csvPath);
+            if (trainingCases.Count > 0)
+                recommendationEngine = new RecommendationEngine(trainingCases, 3);
+        }
+        catch
+        {
+            // dont set recommendation engine
+        }
+    }
+    
     private bool CanShowSimulationTooltip() 
     {
         return simulation is not null
@@ -798,6 +820,56 @@ public partial class ProgramForm : Form
             MessageBox.Show(
                 $"Failed to load scenario.\n\n{ex.Message}",
                 "Load Example Scenario",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+        }
+    }
+
+    private void btnRecommend_Click(object sender, EventArgs e)
+    {
+        if (recommendationEngine is null)
+        {
+            MessageBox.Show(
+                "No training data is loaded. Generate or load a dataset first.",
+                "Recommend Algorithm",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+            return;
+        }
+
+        RoutingAlgorithm recommendation = recommendationEngine.RecommendAlgorithm(
+            scenarioManager.CurrentGrid,
+            scenarioManager.Hazards);
+
+        lblRecommendedAlgorithm.Text = $"{recommendation}";
+    }
+
+    private void btnGenerateTrainingData_Click(object sender, EventArgs e)
+    {
+        string trainingFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TrainingData", "Scenarios");
+        string outputCsvPath =
+            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TrainingData", "training_cases.csv");
+
+        try
+        {
+            List<TrainingCase> trainingCases = trainingDatasetGenerator.GenerateFromFolder(
+                trainingFolder,
+                outputCsvPath,
+                (double)nudRiskWeight.Value);
+
+            recommendationEngine = new RecommendationEngine(trainingCases, 3);
+
+            MessageBox.Show(
+                $"Training dataset generated successfully.\n\nCases: {trainingCases.Count}\nSaved to:\n{outputCsvPath}",
+                "Generate Training Data",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(
+                $"Failed to generate training data.\n\n{ex.Message}",
+                "Generate Training Data",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
         }
