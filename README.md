@@ -1,4 +1,5 @@
 # Hazard-Aware Evacuation Simulator
+![Main editor](media/images/screenshots/main_program_interface.png)
 
 A C# WinForms evacuation simulation system that allows users to design custom scenarios, run multi-agent evacuations, compare different traversal algorithms under hazard constraints, and generate a recommendation on which algorithm would perform the best based on scenario features.
 
@@ -11,7 +12,7 @@ The quality of routes during an evacuation directly affect safety. Different lay
 - Simulate multi-agent evacuations over time
 - Compare multiple pathfinding algorithms:
   - Breadth-First Search (BFS)
-  - Dijkstra�s Algorithm
+  - Dijkstra’s Algorithm
   - A* Search
   - Greedy Best-First Search
 - Apply hazard-aware path costs to model unsafe areas
@@ -62,4 +63,53 @@ The recommendation given by the engine is based on certain scenario features suc
 This subsystem was implemented as a secondary feature, mainly to introduce myself to machine learning concepts. Although a simple implementation of machine learning, it  still proved to be a valuable learning experience.
 
 ## Screenshots / Demo
+![Main editor](media/images/screenshots/main_program_interface.png)
+![Scenario picker](media/images/screenshots/scenario_picker_interface.png)
 
+https://github.com/user-attachments/assets/b513da2e-aff4-48b9-8713-3ab6c87cadfc
+
+## Tech Stack
+- C#
+- .NET / WinForms
+- JetBrains Rider
+- Custom pathfinding and simulation logic
+- KNN-based recommendation logic
+
+## Start-Up Instructions
+1. Clone this repository
+2. Open the solution in your preferred IDE
+3. Build the project
+4. Run the WinForms application
+
+## Project Structure
+```text
+solution/EvacuationSimulator/EvacuationSimulator
+├── Algorithms/
+├── Core/
+├── Data/
+└── UI/
+```
+
+## Example Workflow
+1. Create/load an evacuation scenario
+2. Place exits, walls, agents, and hazards
+3. Select a pathfinding algorithm
+4. Run the simulation
+5. Compare metrics such as evacuation performance and algorithm behaviour
+6. Use the recommendation feature to identify the potential best algorithm for similar scenarios
+
+## Project Limitations
+* The project simplifies a space by using a 2D grid representation
+* Hazard behaviour is modelled, not physically simulated
+* Recommendation quality is dependant on benchmark data and chosen features
+* The application is desktop-based only
+
+## Potential Improvements
+* Add more realistic crowd behaviour
+* Support larger, more complex maps
+* Improve hazard modelling
+* Expand the recommendation system using more data or a more advanced ML algorithm
+* Add more insightful metrics and visual analytics
+
+## Documentation
+Further detail can be found in the full [Project report](docs/Project%20Report.docx) included under ```docs/```.
