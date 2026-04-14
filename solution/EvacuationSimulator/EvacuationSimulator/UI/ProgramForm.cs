@@ -1,6 +1,4 @@
-﻿using System.Windows.Forms.VisualStyles;
-using EvacuationSimulator.Algorithms;
-using EvacuationSimulator.Data;
+﻿using EvacuationSimulator.Data;
 using Point = EvacuationSimulator.Data.Point;
 using EvacuationSimulator.Core;
 using ContentAlignment = System.Drawing.ContentAlignment;
@@ -75,6 +73,8 @@ public partial class ProgramForm : Form
         SetRunState(SimulationRunState.Stopped);
 
         uiInitialised = true;
+
+        TryLoadTrainingData();
     }
 
     private void TryLoadTrainingData()
@@ -689,7 +689,7 @@ public partial class ProgramForm : Form
             simulation!.RunSimulation();
             UpdateMetricLabels();
             pnlGrid.Invalidate();
-            SetRunState(SimulationRunState.Running);
+            SetRunState(SimulationRunState.Stopped);
             return;
         }
 

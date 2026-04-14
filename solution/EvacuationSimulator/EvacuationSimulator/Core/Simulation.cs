@@ -230,8 +230,6 @@ public class Simulation
 
         foreach (Point exit in GetExitCells())
         {
-            Stopwatch queryStopwatch = Stopwatch.StartNew();
-
             List<Point> candidatePath = Pathfinder.FindPath(
                 start,
                 exit,
@@ -241,7 +239,6 @@ public class Simulation
                 RiskWeight,
                 out int nodesExplored);
             
-            queryStopwatch.Stop();
             totalNodesExplored += nodesExplored;
 
             double candidateCost = Pathfinder.CalculatePathCost(candidatePath, Hazards, RiskWeight);

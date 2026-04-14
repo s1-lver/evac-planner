@@ -1,6 +1,4 @@
 ﻿using System.Globalization;
-using System.Runtime.CompilerServices;
-using System.Xml.Schema;
 using EvacuationSimulator.Data;
 using Point = EvacuationSimulator.Data.Point;
 
@@ -167,7 +165,7 @@ public class ExampleScenarioLoader
                 throw new InvalidDataException($"Invalid decay rate for hazard {key}.");
 
             if (definitions.ContainsKey(key))
-                throw new InvalidDataException($"Duplicate haard definitions for {key}.");
+                throw new InvalidDataException($"Duplicate hazard definitions for {key}.");
 
             definitions[key] = (severity, decayRate);
         }

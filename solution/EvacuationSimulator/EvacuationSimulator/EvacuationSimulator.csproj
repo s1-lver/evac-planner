@@ -23,4 +23,8 @@
       </Compile>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="ExampleScenarios\TrainingEvaluation\" />
+    </ItemGroup>
+
 </Project>

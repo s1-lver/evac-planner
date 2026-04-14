@@ -6,7 +6,7 @@ public class SimulationMetrics
 {
     public int TotalEvacuationTime { get; private set; }
     public int AgentsEvacuated { get; private set; }
-    public double CompletionPercentage { get; private set; }   // Store as 0.0 to 1.0
+    public double CompletionPercentage { get; private set; }   // store as 0.0 to 1.0
     public double AverageWaitingTime { get; private set; }
     public double AverageRiskExposure { get; private set; }
     public int NodesExplored { get; private set; }
