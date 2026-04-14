@@ -1,9 +1,9 @@
 # Hazard-Aware Evacuation Simulator
 ![Main editor](media/images/screenshots/main_program_interface.png)
 
-A C# WinForms evacuation simulation system that allows users to design custom scenarios, run multi-agent evacuations, compare different traversal algorithms under hazard constraints, and generate a recommendation on which algorithm would perform the best based on scenario features.
+A C# WinForms evacuation simulation system that allows users to design custom scenarios, run multi-agent evacuations, compare different pathfinding algorithms under hazard constraints, and generate an algorithm recommendation based on specified training scenario cases.
 
-The quality of routes during an evacuation directly affect safety. Different layouts and hazards in the area will change which routing strategy will perform the best (ideally, the safest and quickest routes). The intended users of this program are A-Level Computer Science students, who learn about different graph traversal algorithms in the course. These users required a way to compare these algorithms and inspect their behaviour on a variety of scenarios to support their learning.
+The quality of routes during an evacuation directly affects safety and efficiency. Different layouts, hazards, obstacles, and congestion patterns in the area can change which routing strategy might be most suitable. This project was built to explore how classical pathfinding algorithms behave under these conditions and constraints, and to provide a way to simulate, compare, and then analyse their performance in a controlled environment
 
 ## Key Features
 
@@ -42,13 +42,13 @@ The simulation engine manages:
 The pathfinding layer contains each implemented algorithm, allowing them to be used and compared under the same scenario.
 
 ### Recommendation Subsystem
-The recommendation subsystem extracts scenario features and uses a KNN classifier to suggest the most suitable algorithm based on previously benchmarked scenario cases.
+The recommendation subsystem extracts scenario features and uses a KNN classifier to suggest a suitable algorithm based on previously benchmarked scenario cases.
 
 ## Hazard-Aware Routing
 A major aspect of the project is the use of hazard-aware traversal cost. The simulator considers cells closer to a hazard (or risk source) as more "costly", allowing the system to model situations where the shortest geometric route does not translate to the safest route.
 
 ## Recommendation Engine
-The system includes a simple recommendation feature, using the K-Nearest Neighbours algorithm (KNN) to suggest the best algorithm for a given scenario. 
+The system includes a simple recommendation feature, using the K-Nearest Neighbours algorithm (KNN) to suggest a suitable algorithm for a given scenario. 
 
 The recommendation given by the engine is based on certain scenario features such as:
 - grid dimensions
@@ -60,10 +60,10 @@ The recommendation given by the engine is based on certain scenario features suc
 - minimum spawn to hazard distance
 - minimum exit to hazard distance
 
-This subsystem was implemented as a secondary feature, mainly to introduce myself to machine learning concepts. Although a simple implementation of machine learning, it  still proved to be a valuable learning experience.
+This subsystem was implemented as a secondary feature to explore how benchmarked scenario data could be used to support algorithm selection. It is intentionally lightweight, and should be treated as a supporting decision rather than a guranteed optimal algorithm.
 
 ## Screenshots / Demo
-![Main editor](media/images/screenshots/main_program_interface.png)
+The main editor interface is presented at the top of this page.
 ![Scenario picker](media/images/screenshots/scenario_picker_interface.png)
 
 https://github.com/user-attachments/assets/b513da2e-aff4-48b9-8713-3ab6c87cadfc
@@ -76,18 +76,25 @@ https://github.com/user-attachments/assets/b513da2e-aff4-48b9-8713-3ab6c87cadfc
 - KNN-based recommendation logic
 
 ## Start-Up Instructions
+The project targets [.NET 8.0](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) and is intended for Windows platforms only due to the use of WinForms.
+
 1. Clone this repository
-2. Open the solution in your preferred IDE
-3. Build the project
+2. Open `solution/EvacuationSimulator/EvacuationSimulator.sln` in your preferred IDE
+3. Restore dependencies and build the solution
 4. Run the WinForms application
 
 ## Project Structure
 ```text
-solution/EvacuationSimulator/EvacuationSimulator
-├── Algorithms/
-├── Core/
-├── Data/
-└── UI/
+solution/
+└── EvacuationSimulator/
+    ├── EvacuationSimulator.sln
+    └── EvacuationSimulator/
+        ├── Algorithms/
+        ├── Core/
+        ├── Data/
+        ├── UI/
+        ├── TrainingData/
+        └── ExampleScenarios/
 ```
 
 ## Example Workflow
@@ -101,8 +108,9 @@ solution/EvacuationSimulator/EvacuationSimulator
 ## Project Limitations
 * The project simplifies a space by using a 2D grid representation
 * Hazard behaviour is modelled, not physically simulated
-* Recommendation quality is dependant on benchmark data and chosen features
+* Recommendation quality is dependant on the benchmark data and selected features
 * The application is desktop-based only
+* The recommendation subsystem is intended as decision support, it does not guarantee an optimal algorithm
 
 ## Potential Improvements
 * Add more realistic crowd behaviour
@@ -112,4 +120,6 @@ solution/EvacuationSimulator/EvacuationSimulator
 * Add more insightful metrics and visual analytics
 
 ## Documentation
-Further detail can be found in the full [Project report](docs/Project%20Report.docx) included under ```docs/```.
+Further detail can be found in the full [project report](docs/Project%20Report.docx).
+
+Note: the report is provided as a `.docx` file to preserve embedded demonstration videos.
