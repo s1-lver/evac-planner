@@ -1,9 +1,11 @@
 # Hazard-Aware Evacuation Simulator
 ![Main editor](media/images/screenshots/main_program_interface.png)
 
-A C# WinForms evacuation simulation system that allows users to design custom scenarios, run multi-agent evacuations, compare different pathfinding algorithms under hazard constraints, and generate an algorithm recommendation based on specified training scenario cases.
+A C# WinForms evacuation simulation system that allows users to design custom scenarios, run multi-agent evacuations, compare pathfinding algorithms under hazard constraints, and generate an algorithm recommendation based on previously benchmarked training scenarios.
 
-The quality of routes during an evacuation directly affects safety and efficiency. Different layouts, hazards, obstacles, and congestion patterns in the area can change which routing strategy might be most suitable. This project was built to explore how classical pathfinding algorithms behave under these conditions and constraints, and to provide a way to simulate, compare, and then analyse their performance in a controlled environment
+Route selection during an evacuation directly affects safety and efficiency. Different layouts, hazards, obstacles, and congestion patterns can change which routing strategy is most suitable. This project was built to explore how classical pathfinding algorithms behave under these conditions and to provide a way to simulate, compare, and analyse their performance in a controlled environment.
+
+This project was developed as my A-Level Computer Science NEA.
 
 ## Key Features
 
@@ -18,7 +20,7 @@ The quality of routes during an evacuation directly affects safety and efficienc
 - Apply hazard-aware path costs to model unsafe areas
 - Benchmark algorithm performance using simulation metrics
 - Recommend a suitable algorithm using a K-Nearest Neighbours (KNN) model
-- Load example scenarios for classroom use
+- Load example scenarios for testing and comparison
 
 ## System Overview
 
@@ -60,7 +62,7 @@ The recommendation given by the engine is based on certain scenario features suc
 - minimum spawn to hazard distance
 - minimum exit to hazard distance
 
-This subsystem was implemented as a secondary feature to explore how benchmarked scenario data could be used to support algorithm selection. It is intentionally lightweight, and should be treated as a supporting decision rather than a guranteed optimal algorithm.
+This subsystem was implemented as a secondary feature to explore how benchmarked scenario data could be used to support algorithm selection. It is intentionally lightweight and should be treated as a decision-support feature rather than a guaranteed optimal selector.
 
 ## Screenshots / Demo
 The main editor interface is presented at the top of this page.
